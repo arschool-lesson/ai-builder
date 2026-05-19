@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>席替えアプリ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 設定画面 -->
+  <div id="setup-screen" class="screen">
+    <div class="blackboard title-area">
+      <div class="garland" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <img class="clock" src="assets/clock.png" alt="" aria-hidden="true">
+      <div class="chalk-doodle crown" aria-hidden="true">♕</div>
+      <h1 class="app-title">SEAT<span class="accent">SHUFFLE</span></h1>
+      <p class="subtitle">かんたん席替えアプリ</p>
+      <div class="chalk-tray" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <div class="setup-form">
+      <!-- 座席レイアウト設定 -->
+      <div class="form-group">
+        <label class="form-label" for="cols"><span class="label-icon"><img src="assets/chair.png" alt=""></span>座席レイアウト</label>
+        <div class="layout-inputs">
+          <div class="input-with-label">
+            <input type="number" id="cols" class="num-input" value="6" min="1" max="10">
+            <span class="input-desc">列</span>
+          </div>
+          <span class="times">&times;</span>
+          <div class="input-with-label">
+            <input type="number" id="rows" class="num-input" value="5" min="1" max="10">
+            <span class="input-desc">行</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 生徒数入力 -->
+      <div class="form-group">
+        <label class="form-label" for="student-count"><span class="label-icon"><img src="assets/people.png" alt=""></span>生徒数</label>
+        <div class="student-count-input">
+          <input type="number" id="student-count" class="num-input num-input-wide" value="30" min="1" max="100">
+          <span class="input-desc">人</span>
+        </div>
+        <p class="input-hint">最大<span id="max-seats">30</span>席（出席番号1〜<span id="student-label">30</span>を配置）</p>
+      </div>
+
+      <button id="shuffle-btn" class="btn">席替えスタート</button>
+    </div>
+  </div>
+
+  <!-- 結果画面 -->
+  <div id="result-screen" class="screen hidden">
+    <div class="blackboard result-header">
+      <div class="paper-note" aria-hidden="true">今日も<br>がんばろう!</div>
+      <h2 class="result-title">席替え結果</h2>
+      <p class="blackboard-label">黒板</p>
+      <div class="result-date" aria-hidden="true"><span id="today-label"></span><br>日直 ○○</div>
+      <div class="chalk-tray" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <div id="seat-grid" class="seat-grid"></div>
+
+    <div class="result-actions">
+      <button id="reshuffle-btn" class="btn">もう一度シャッフル</button>
+      <button id="back-btn" class="btn btn-outline">設定に戻る</button>
+    </div>
+
+    <p class="result-message">席替えが完了しました！どうぞ新しい席で楽しく過ごしてくださいね♪</p>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
