@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIアプリ開発コース 教材集</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --fg: #1a1a1a;
+      --bg: #fafafa;
+      --muted: #666;
+      --accent: #2563eb;
+      --card: #fff;
+      --border: #e5e5e5;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --fg: #f0f0f0;
+        --bg: #121212;
+        --muted: #aaa;
+        --accent: #60a5fa;
+        --card: #1e1e1e;
+        --border: #333;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Hiragino Sans", "Yu Gothic", sans-serif;
+      color: var(--fg);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px 96px;
+    }
+    h1 {
+      font-size: 1.75rem;
+      margin: 0 0 8px;
+    }
+    .lead {
+      color: var(--muted);
+      margin: 0 0 32px;
+    }
+    h2 {
+      font-size: 1.1rem;
+      margin: 32px 0 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+    ul.lessons {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+    ul.lessons li {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+    }
+    ul.lessons a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    ul.lessons a:hover { text-decoration: underline; }
+    .desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+    .empty {
+      color: var(--muted);
+      font-style: italic;
+    }
+    footer {
+      margin-top: 64px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>AIアプリ開発コース 教材集</h1>
+    <p class="lead">レッスンで作成する完成形サンプルの一覧です。</p>
+
+    <h2>レッスン一覧</h2>
+    <ul class="lessons">
+      <li class="empty">まだ教材が追加されていません。</li>
+    </ul>
+
+    <footer>
+      arschool — AIアプリ開発コース
+    </footer>
+  </main>
+</body>
+</html>
