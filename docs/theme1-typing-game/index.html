@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>タイピングゲーム</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- スタート画面 -->
+  <div id="start-screen" class="screen">
+    <div class="title-area">
+      <h1 class="game-title">TYPING<span class="accent">MASTER</span></h1>
+      <p class="subtitle">ローマ字タイピング練習</p>
+    </div>
+    <button id="start-btn" class="btn">START</button>
+  </div>
+
+  <!-- ゲーム画面 -->
+  <div id="game-screen" class="screen hidden">
+    <div class="header">
+      <div class="stat">
+        <span class="stat-label">スコア</span>
+        <span id="score" class="stat-value">0</span>
+      </div>
+      <div class="timer-bar-container">
+        <div id="timer-bar" class="timer-bar"></div>
+      </div>
+      <div class="stat">
+        <span class="stat-label">のこり</span>
+        <span id="timer" class="stat-value">60</span>
+      </div>
+    </div>
+
+    <div class="word-area">
+      <p id="japanese" class="japanese-word"></p>
+      <p id="romaji" class="romaji-word"></p>
+    </div>
+
+    <div id="feedback" class="feedback"></div>
+  </div>
+
+  <!-- リザルト画面 -->
+  <div id="result-screen" class="screen hidden">
+    <h2 class="result-title">RESULT</h2>
+    <div class="result-score">
+      <span id="final-score" class="big-score">0</span>
+      <span class="score-unit">問正解</span>
+    </div>
+    <p id="result-message" class="result-message"></p>
+    <button id="retry-btn" class="btn">RETRY</button>
+  </div>
+
+  <script src="words.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
