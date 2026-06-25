@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSONってなに？ - データの書き方を学ぼう</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+    background: #f0f4f8;
+    color: #2d3748;
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  .slides { position: relative; width: 100%; height: 100vh; }
+
+  .slide {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 70px 80px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.45s ease;
+  }
+  .slide.active { opacity: 1; pointer-events: auto; }
+
+  h1 {
+    font-size: 2.6rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    color: #1a202c;
+  }
+  h2 {
+    font-size: 1.85rem;
+    font-weight: 900;
+    margin-bottom: 24px;
+    text-align: center;
+    color: #1a202c;
+  }
+  p { font-size: 1.2rem; line-height: 1.9; }
+  .note { font-size: 1.0rem; color: #718096; line-height: 1.7; text-align: center; margin-top: 12px; }
+
+  .c-blue { color: #3182ce; font-weight: 700; }
+  .c-green { color: #2f855a; font-weight: 700; }
+  .c-red { color: #c53030; font-weight: 700; }
+  .c-purple { color: #6b46c1; font-weight: 700; }
+  .c-orange { color: #c05621; font-weight: 700; }
+
+  /* 背景 */
+  .bg-cream    { background: linear-gradient(160deg, #fdf6ec 0%, #fcebd4 100%); }
+  .bg-mint     { background: linear-gradient(160deg, #e6fffa 0%, #c6f6d5 100%); }
+  .bg-sky      { background: linear-gradient(160deg, #ebf8ff 0%, #bee3f8 100%); }
+  .bg-lavender { background: linear-gradient(160deg, #faf5ff 0%, #e9d8fd 100%); }
+  .bg-peach    { background: linear-gradient(160deg, #fff5f5 0%, #fed7d7 100%); }
+  .bg-lemon    { background: linear-gradient(160deg, #fffff0 0%, #fefcbf 100%); }
+  .bg-white    { background: linear-gradient(160deg, #ffffff 0%, #f7fafc 100%); }
+
+  /* コードブロック */
+  .code {
+    background: #1a202c;
+    color: #e2e8f0;
+    border-radius: 14px;
+    padding: 20px 26px;
+    font-family: "SF Mono", "Consolas", "Courier New", monospace;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    text-align: left;
+    max-width: 620px;
+    width: 100%;
+    overflow-x: auto;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  }
+  .code .k  { color: #90cdf4; }  /* キー */
+  .code .s  { color: #9ae6b4; }  /* 文字列値 */
+  .code .n  { color: #fbd38d; }  /* 数値 */
+  .code .p  { color: #a0aec0; }  /* 記号 */
+  .code .cm { color: #718096; }  /* コメント */
+  .code .h  { color: #fc8181; }  /* ハイライト */
+
+  /* カード */
+  .card-row {
+    display: flex;
+    gap: 24px;
+    margin: 18px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px 26px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    flex: 1;
+    min-width: 260px;
+    max-width: 400px;
+  }
+  .card h3 {
+    font-size: 1.15rem;
+    font-weight: 900;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  .card p { font-size: 1.0rem; line-height: 1.8; }
+  .card-csv  { border-left: 5px solid #ed8936; }
+  .card-json { border-left: 5px solid #4299e1; }
+  .card-ok   { border-left: 5px solid #48bb78; }
+  .card-ng   { border-left: 5px solid #fc8181; }
+  .card-info { border-left: 5px solid #4299e1; }
+  .card-point { border-left: 5px solid #9f7aea; }
+
+  /* 比較テーブル */
+  .compare-table {
+    border-collapse: collapse;
+    margin: 16px auto;
+    font-size: 1.0rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .compare-table th, .compare-table td {
+    padding: 12px 20px;
+    text-align: center;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .compare-table th {
+    background: #2d3748;
+    color: #fff;
+    font-weight: 700;
+  }
+  .compare-table td { background: #fff; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table .csv-col { background: #fffaf0; }
+  .compare-table .json-col { background: #ebf8ff; }
+
+  /* 吹き出し */
+  .bubble {
+    background: #fff;
+    border-radius: 16px;
+    padding: 18px 26px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    max-width: 620px;
+    margin: 14px auto;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  /* イラスト */
+  .illust {
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.4rem;
+    margin: 0 auto 14px;
+  }
+  .illust-blue   { background: linear-gradient(135deg, #bee3f8, #90cdf4); }
+  .illust-green  { background: linear-gradient(135deg, #c6f6d5, #9ae6b4); }
+  .illust-orange { background: linear-gradient(135deg, #feebc8, #fbd38d); }
+  .illust-purple { background: linear-gradient(135deg, #e9d8fd, #d6bcfa); }
+
+  /* たとえ話 */
+  .analogy {
+    background: rgba(255,255,255,0.7);
+    border-radius: 16px;
+    padding: 22px 28px;
+    margin: 16px 0;
+    max-width: 640px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+  }
+  .analogy-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #6b46c1;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .analogy p { font-size: 1.05rem; }
+
+  /* ラベル付きコード */
+  .code-label {
+    display: inline-block;
+    background: #4a5568;
+    color: #e2e8f0;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: -2px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* 矢印 */
+  .arrow-down {
+    text-align: center;
+    font-size: 1.6rem;
+    color: #a0aec0;
+    margin: 6px 0;
+  }
+
+  /* ナビ */
+  .nav {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    z-index: 100;
+    background: rgba(255,255,255,0.9);
+    padding: 8px 22px;
+    border-radius: 28px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.1);
+    backdrop-filter: blur(8px);
+  }
+  .nav button {
+    background: #edf2f7;
+    border: none;
+    color: #2d3748;
+    font-size: 1.1rem;
+    padding: 8px 16px;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-weight: 700;
+  }
+  .nav button:hover { background: #e2e8f0; }
+  .nav button:disabled { opacity: 0.3; cursor: default; }
+  .nav .pg {
+    font-size: 0.9rem;
+    color: #a0aec0;
+    min-width: 56px;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  @media (max-width: 700px) {
+    .slide { padding: 30px 20px; }
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.4rem; }
+    p { font-size: 1.0rem; }
+    .code { font-size: 0.82rem; padding: 14px 16px; }
+    .card { min-width: 220px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="slides">
+
+  <!-- 1: 表紙 -->
+  <div class="slide bg-sky active">
+    <div class="illust illust-blue">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#3182ce" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+    </div>
+    <h1>JSONってなに？</h1>
+    <p style="text-align:center; color:#4a5568;">
+      データの書き方を学んで、<br>国旗クイズのデータを作ろう
+    </p>
+    <p style="margin-top: 36px; color: #a0aec0; font-size: 0.95rem;">AIアプリコース｜Arschool</p>
+  </div>
+
+  <!-- 2: 前回のおさらい：CSV -->
+  <div class="slide bg-cream">
+    <h2>前回のおさらい：CSVファイル</h2>
+    <p style="text-align:center; margin-bottom:16px;">
+      タイピングゲームでは、問題データを<br>
+      <span class="c-orange">CSV（シーエスブイ）</span>という形式で管理しました。
+    </p>
+    <div class="code-label" style="margin-left:20px;">words.csv</div>
+    <div class="code" style="max-width:480px;">
+      <span class="s">apple</span><span class="p">,</span><span class="s">りんご</span><br>
+      <span class="s">banana</span><span class="p">,</span><span class="s">バナナ</span><br>
+      <span class="s">cat</span><span class="p">,</span><span class="s">ねこ</span><br>
+      <span class="s">dog</span><span class="p">,</span><span class="s">いぬ</span>
+    </div>
+    <div class="bubble" style="margin-top:18px;">
+      <p>
+        CSVは<span class="c-orange">カンマ（ , ）で区切っただけ</span>のシンプルな形式。<br>
+        「英単語」と「日本語の意味」のような<br>
+        <span class="c-orange">2つの情報をセットにする</span>のに向いています。
+      </p>
+    </div>
+  </div>
+
+  <!-- 3: CSVだと困ること -->
+  <div class="slide bg-peach">
+    <h2>CSVだと困ることがある</h2>
+    <p style="text-align:center; margin-bottom:16px;">
+      国旗クイズには、1つの問題にたくさんの情報が必要です。
+    </p>
+    <div style="text-align:center; margin-bottom:14px;">
+      <span style="background:#fff; border-radius:10px; padding:8px 16px; display:inline-block; font-size:1.0rem; box-shadow:0 1px 6px rgba(0,0,0,0.06);">
+        国名、画像、地域、難易度、選択肢1、選択肢2、選択肢3、選択肢4、正解番号
+      </span>
+    </div>
+    <p style="text-align:center; margin-bottom:16px; font-size:1.1rem;">
+      これをCSVで書くと……
+    </p>
+    <div class="code" style="max-width:580px; font-size:0.82rem;">
+      <span class="s">jp</span><span class="p">,</span><span class="s">日本</span><span class="p">,</span><span class="s">flags/jp.png</span><span class="p">,</span><span class="s">アジア</span><span class="p">,</span><span class="n">1</span><span class="p">,</span><span class="s">日本</span><span class="p">,</span><span class="s">韓国</span><span class="p">,</span><span class="s">中国</span><span class="p">,</span><span class="s">モンゴル</span><span class="p">,</span><span class="n">0</span><br>
+      <span class="s">fr</span><span class="p">,</span><span class="s">フランス</span><span class="p">,</span><span class="s">flags/fr.png</span><span class="p">,</span><span class="s">ヨーロッパ</span><span class="p">,</span><span class="n">1</span><span class="p">,</span><span class="s">フランス</span><span class="p">,</span><span class="s">ドイツ</span><span class="p">,</span><span class="s">イタリア</span><span class="p">,</span><span class="s">スペイン</span><span class="p">,</span><span class="n">0</span>
+    </div>
+    <div class="bubble" style="margin-top:16px;">
+      <p>
+        <span class="c-red">どのカンマが何番目かわからなくなる。</span><br>
+        「5番目のカンマの後が選択肢1で……」なんて数えるのは大変。<br>
+        <span class="c-red">読みにくいし、間違いやすい！</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- 4: JSONなら解決 -->
+  <div class="slide bg-mint">
+    <h2>JSONなら「名前付き」で書ける</h2>
+    <p style="text-align:center; margin-bottom:14px;">
+      <span class="c-blue">JSON（ジェイソン）</span>は、データに<span class="c-blue">名前をつけて</span>書ける形式です。
+    </p>
+    <div class="code-label" style="margin-left:20px;">quiz.json（1問分）</div>
+    <div class="code" style="font-size:0.9rem;">
+      <span class="p">{</span><br>
+      <span class="p">  </span><span class="k">"country"</span><span class="p">: </span><span class="s">"日本"</span><span class="p">,</span><br>
+      <span class="p">  </span><span class="k">"image"</span><span class="p">:   </span><span class="s">"flags/jp.png"</span><span class="p">,</span><br>
+      <span class="p">  </span><span class="k">"region"</span><span class="p">:  </span><span class="s">"アジア"</span><span class="p">,</span><br>
+      <span class="p">  </span><span class="k">"difficulty"</span><span class="p">: </span><span class="n">1</span><span class="p">,</span><br>
+      <span class="p">  </span><span class="k">"choices"</span><span class="p">: [</span><span class="s">"日本"</span><span class="p">, </span><span class="s">"韓国"</span><span class="p">, </span><span class="s">"中国"</span><span class="p">, </span><span class="s">"モンゴル"</span><span class="p">],</span><br>
+      <span class="p">  </span><span class="k">"correctIndex"</span><span class="p">: </span><span class="n">0</span><br>
+      <span class="p">}</span>
+    </div>
+    <div class="bubble" style="margin-top:14px;">
+      <p>
+        <span class="c-blue">"country"</span> が国名、<span class="c-blue">"region"</span> が地域、<span class="c-blue">"choices"</span> が選択肢……<br>
+        名前がついているから、<span class="c-green">何がどのデータかすぐわかる！</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- 5: CSV vs JSON 比較 -->
+  <div class="slide bg-lemon">
+    <h2>CSV と JSON の比較</h2>
+    <table class="compare-table">
+      <tr>
+        <th style="width:180px;"></th>
+        <th style="width:220px;">CSV</th>
+        <th style="width:220px;">JSON</th>
+      </tr>
+      <tr>
+        <td style="font-weight:700; background:#f7fafc;">正式名称</td>
+        <td class="csv-col">Comma-Separated Values<br><span style="font-size:0.85rem; color:#718096;">カンマ区切りの値</span></td>
+        <td class="json-col">JavaScript Object Notation<br><span style="font-size:0.85rem; color:#718096;">JavaScriptのデータの書き方</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight:700; background:#f7fafc;">書き方</td>
+        <td class="csv-col">カンマ（ , ）で区切る</td>
+        <td class="json-col">名前と値をセットで書く</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700; background:#f7fafc;">向いている<br>データ</td>
+        <td class="csv-col">列が少ないシンプルな表</td>
+        <td class="json-col">複雑で入れ子のあるデータ</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700; background:#f7fafc;">読みやすさ</td>
+        <td class="csv-col">列が増えると<br>わかりにくくなる</td>
+        <td class="json-col">名前付きなので<br>いつでもわかりやすい</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700; background:#f7fafc;">JavaScriptとの<br>相性</td>
+        <td class="csv-col">変換が必要</td>
+        <td class="json-col">そのまま使える</td>
+      </tr>
+    </table>
+    <p class="note">
+      CSVはスプレッドシート（Excel）向き。JSONはWebアプリ向き。<br>どちらが良い悪いではなく、用途によって使い分けます。
+    </p>
+  </div>
+
+  <!-- 6: JSONの書き方ルール -->
+  <div class="slide bg-lavender">
+    <h2>JSONの書き方ルール</h2>
+    <div class="card-row">
+      <div class="card card-info">
+        <h3>{ } で囲む</h3>
+        <p>
+          1つのデータのまとまりは<br>
+          <span class="c-blue">波カッコ { }</span> で囲みます。<br>
+          これを<span class="c-blue">「オブジェクト」</span>と呼びます。
+        </p>
+      </div>
+      <div class="card card-info">
+        <h3>"名前": 値</h3>
+        <p>
+          データは<span class="c-blue">"名前": 値</span> の形で書きます。<br>
+          名前は必ず<span class="c-blue">ダブルクォーテーション " "</span> で囲みます。
+        </p>
+      </div>
+    </div>
+    <div class="card-row">
+      <div class="card card-info">
+        <h3>[ ] はリスト</h3>
+        <p>
+          複数の値を並べるときは<br>
+          <span class="c-blue">角カッコ [ ]</span> で囲みます。<br>
+          選択肢のように<span class="c-blue">同じ種類のものが複数</span>あるときに使います。
+        </p>
+      </div>
+      <div class="card card-info">
+        <h3>, で区切る</h3>
+        <p>
+          データが複数あるときは<br>
+          <span class="c-blue">カンマ , </span>で区切ります。<br>
+          ただし<span class="c-red">最後の項目の後にはカンマを付けない</span>のがルール。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7: 値の種類 -->
+  <div class="slide bg-cream">
+    <h2>値にはいろいろな種類がある</h2>
+    <div class="code" style="font-size:0.92rem; max-width: 540px;">
+      <span class="p">{</span><br>
+      <span class="p">  </span><span class="k">"country"</span><span class="p">: </span><span class="s">"日本"</span><span class="p">,</span>          <span class="cm">← 文字列（" " で囲む）</span><br>
+      <span class="p">  </span><span class="k">"difficulty"</span><span class="p">: </span><span class="n">1</span><span class="p">,</span>            <span class="cm">← 数値（そのまま）</span><br>
+      <span class="p">  </span><span class="k">"choices"</span><span class="p">: [</span><span class="s">"日本"</span><span class="p">, </span><span class="s">"韓国"</span><span class="p">],</span>  <span class="cm">← リスト</span><br>
+      <span class="p">  </span><span class="k">"correctIndex"</span><span class="p">: </span><span class="n">0</span>         <span class="cm">← 数値</span><br>
+      <span class="p">}</span>
+    </div>
+    <div class="card-row" style="margin-top:20px;">
+      <div class="card card-point" style="max-width:500px;">
+        <h3>correctIndex の「0」って？</h3>
+        <p>
+          プログラムの世界では、番号を<span class="c-purple">0から</span>数えます。<br><br>
+          choices: [<span class="c-purple">"日本"</span>, "韓国", "中国", "モンゴル"]<br>
+          &emsp;&emsp;&emsp;&emsp;&emsp;<span class="c-purple">0番目</span>&emsp;1番目&emsp;2番目&emsp;3番目<br><br>
+          correctIndex: 0 → 正解は<span class="c-purple">0番目の「日本」</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8: 複数の問題を並べる -->
+  <div class="slide bg-sky">
+    <h2>複数の問題を並べる</h2>
+    <p style="text-align:center; margin-bottom:14px;">
+      1問ずつの { } を、<span class="c-blue">[ ] の中にカンマ区切りで並べる</span>とクイズデータの完成！
+    </p>
+    <div class="code-label" style="margin-left:20px;">quiz.json</div>
+    <div class="code" style="font-size:0.85rem;">
+      <span class="h">[</span><br>
+      <span class="p">  {</span><br>
+      <span class="p">    </span><span class="k">"country"</span><span class="p">: </span><span class="s">"日本"</span><span class="p">,</span><br>
+      <span class="p">    </span><span class="k">"image"</span><span class="p">: </span><span class="s">"flags/jp.png"</span><span class="p">,</span><br>
+      <span class="p">    </span><span class="k">"region"</span><span class="p">: </span><span class="s">"アジア"</span><span class="p">,</span><br>
+      <span class="p">    </span><span class="k">"difficulty"</span><span class="p">: </span><span class="n">1</span><span class="p">,</span><br>
+      <span class="p">    </span><span class="k">"choices"</span><span class="p">: [</span><span class="s">"日本"</span><span class="p">, </span><span class="s">"韓国"</span><span class="p">, </span><span class="s">"中国"</span><span class="p">, </span><span class="s">"モンゴル"</span><span class="p">],</span><br>
+      <span class="p">    </span><span class="k">"correctIndex"</span><span class="p">: </span><span class="n">0</span><br>
+      <span class="p">  }</span><span class="h">,</span>            <span class="cm">← カンマで区切る</span><br>
+      <span class="p">  {</span><br>
+      <span class="p">    </span><span class="k">"country"</span><span class="p">: </span><span class="s">"フランス"</span><span class="p">,</span><br>
+      <span class="p">    </span><span class="cm">...</span><br>
+      <span class="p">  }</span><br>
+      <span class="h">]</span>
+    </div>
+    <p class="note">
+      全体を [ ] で囲むのを忘れずに。<br>
+      最後の問題の } の後にはカンマを付けません。
+    </p>
+  </div>
+
+  <!-- 9: 国旗クイズのデータ構造 全体像 -->
+  <div class="slide bg-mint">
+    <h2>国旗クイズのデータ構造</h2>
+    <p style="text-align:center; margin-bottom:16px;">
+      1問分のデータには、次の情報が入っています。
+    </p>
+    <div class="code" style="font-size:0.9rem;">
+      <span class="p">{</span><br>
+      <span class="p">  </span><span class="k">"code"</span><span class="p">: </span><span class="s">"jp"</span><span class="p">,</span>              <span class="cm">← 国コード（画像名と同じ）</span><br>
+      <span class="p">  </span><span class="k">"country"</span><span class="p">: </span><span class="s">"日本"</span><span class="p">,</span>           <span class="cm">← 国名</span><br>
+      <span class="p">  </span><span class="k">"image"</span><span class="p">: </span><span class="s">"flags/jp.png"</span><span class="p">,</span>   <span class="cm">← 国旗画像のパス</span><br>
+      <span class="p">  </span><span class="k">"region"</span><span class="p">: </span><span class="s">"アジア"</span><span class="p">,</span>         <span class="cm">← 地域（6つ）</span><br>
+      <span class="p">  </span><span class="k">"difficulty"</span><span class="p">: </span><span class="n">1</span><span class="p">,</span>            <span class="cm">← 難易度（1:簡単 2:普通 3:難しい）</span><br>
+      <span class="p">  </span><span class="k">"choices"</span><span class="p">: [</span>                <span class="cm">← 選択肢（4つ）</span><br>
+      <span class="p">    </span><span class="s">"日本"</span><span class="p">, </span><span class="s">"韓国"</span><span class="p">, </span><span class="s">"中国"</span><span class="p">, </span><span class="s">"モンゴル"</span><br>
+      <span class="p">  ],</span><br>
+      <span class="p">  </span><span class="k">"correctIndex"</span><span class="p">: </span><span class="n">0</span>          <span class="cm">← 正解（0番目 = "日本"）</span><br>
+      <span class="p">}</span>
+    </div>
+  </div>
+
+  <!-- 10: AIにJSONを作ってもらおう -->
+  <div class="slide bg-lavender">
+    <h2>AIにJSONデータを作ってもらおう</h2>
+    <p style="text-align:center; margin-bottom:14px;">
+      構造がわかったら、AIにお願いして<br>
+      クイズデータを作ってもらいましょう！
+    </p>
+    <p style="text-align:center; margin-bottom:16px; font-size:1.05rem;">
+      一度に全部頼むのではなく、<span class="c-purple">少しずつ確認しながら進める</span>のがコツです。
+    </p>
+    <div class="card-row">
+      <div class="card card-point" style="max-width:540px;">
+        <h3>ステップ1：まず構造を伝えて少しだけ作ってもらう</h3>
+        <p style="font-size:0.95rem;">
+          「世界の国旗クイズを作りたい。まずは2〜3問だけ、<br>
+          さっき学んだJSONの形で作ってみて」<br><br>
+          → できたデータを見て、構造が合っているか確認する。
+        </p>
+      </div>
+    </div>
+    <div class="card-row">
+      <div class="card card-ok" style="max-width:540px;">
+        <h3>ステップ2：OKなら残りを全部お願いする</h3>
+        <p style="font-size:0.95rem;">
+          「いい感じ！この構造で、世界中の全ての国の分を作って。<br>
+          地域ごとに分けて、有名な国とマイナーな国で<br>
+          難易度も変えてね」<br><br>
+          → 量が多いので、地域ごとに分けて頼んでもOK。
+        </p>
+      </div>
+    </div>
+    <div class="bubble" style="margin-top:10px;">
+      <p style="text-align:center; font-size:1.0rem;">
+        JSONの構造を理解しているから、<br>
+        AIが作ったデータが<span class="c-green">正しいかどうか自分で判断</span>できる。
+      </p>
+    </div>
+  </div>
+
+  <!-- 11: まとめ -->
+  <div class="slide bg-cream">
+    <div class="illust illust-green">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#2f855a" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h1>まとめ</h1>
+    <div style="max-width: 600px;">
+      <div class="bubble" style="margin: 10px 0;">
+        <p><span class="c-orange">CSV</span>はカンマ区切りのシンプルな形式。列が少ないデータに向いている。</p>
+      </div>
+      <div class="bubble" style="margin: 10px 0;">
+        <p><span class="c-blue">JSON</span>はデータに名前をつけて書く形式。複雑なデータでも読みやすい。</p>
+      </div>
+      <div class="bubble" style="margin: 10px 0;">
+        <p>JSONの構造を理解していると、AIに<span class="c-green">具体的で正確な指示</span>を出せる。</p>
+      </div>
+      <div class="bubble" style="margin: 10px 0;">
+        <p>Webアプリのデータ管理には<span class="c-blue">JSON</span>がよく使われている。<br>
+        プロのエンジニアも同じ形式を使っている。</p>
+      </div>
+    </div>
+    <p style="margin-top: 24px; color: #a0aec0; font-size: 0.95rem;">AIアプリコース｜Arschool</p>
+  </div>
+
+</div>
+
+<!-- ナビゲーション -->
+<div class="nav">
+  <button id="prev-btn" disabled>◀ 前へ</button>
+  <span class="pg"><span id="cp">1</span> / <span id="tp">11</span></span>
+  <button id="next-btn">次へ ▶</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+  const cpEl = document.getElementById('cp');
+  let cur = 0;
+
+  function go(n) {
+    slides.forEach(s => s.classList.remove('active'));
+    slides[n].classList.add('active');
+    cur = n;
+    cpEl.textContent = n + 1;
+    prevBtn.disabled = n === 0;
+    nextBtn.disabled = n === slides.length - 1;
+  }
+
+  prevBtn.addEventListener('click', () => { if (cur > 0) go(cur - 1); });
+  nextBtn.addEventListener('click', () => { if (cur < slides.length - 1) go(cur + 1); });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); if (cur < slides.length - 1) go(cur + 1); }
+    if (e.key === 'ArrowLeft') { if (cur > 0) go(cur - 1); }
+  });
+</script>
+
+</body>
+</html>
