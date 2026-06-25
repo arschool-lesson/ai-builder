@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>サーバーってなに？ - Webアプリのしくみ</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+    background: #f0f4f8;
+    color: #2d3748;
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  /* ===== スライド ===== */
+  .slides { position: relative; width: 100%; height: 100vh; }
+
+  .slide {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 70px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.45s ease;
+  }
+  .slide.active { opacity: 1; pointer-events: auto; }
+
+  /* ===== タイポグラフィ ===== */
+  h1 {
+    font-size: 2.6rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    color: #1a202c;
+  }
+  h2 {
+    font-size: 1.85rem;
+    font-weight: 900;
+    margin-bottom: 28px;
+    text-align: center;
+    color: #1a202c;
+  }
+  p { font-size: 1.25rem; line-height: 1.9; }
+  .note { font-size: 1.05rem; color: #718096; line-height: 1.7; text-align: center; margin-top: 14px; }
+
+  /* カラーアクセント */
+  .c-blue { color: #3182ce; font-weight: 700; }
+  .c-green { color: #2f855a; font-weight: 700; }
+  .c-red { color: #c53030; font-weight: 700; }
+  .c-purple { color: #6b46c1; font-weight: 700; }
+  .c-orange { color: #c05621; font-weight: 700; }
+
+  /* ===== 背景テーマ ===== */
+  .bg-cream   { background: linear-gradient(160deg, #fdf6ec 0%, #fcebd4 100%); }
+  .bg-mint    { background: linear-gradient(160deg, #e6fffa 0%, #c6f6d5 100%); }
+  .bg-sky     { background: linear-gradient(160deg, #ebf8ff 0%, #bee3f8 100%); }
+  .bg-lavender{ background: linear-gradient(160deg, #faf5ff 0%, #e9d8fd 100%); }
+  .bg-peach   { background: linear-gradient(160deg, #fff5f5 0%, #fed7d7 100%); }
+  .bg-lemon   { background: linear-gradient(160deg, #fffff0 0%, #fefcbf 100%); }
+  .bg-white   { background: linear-gradient(160deg, #ffffff 0%, #f7fafc 100%); }
+
+  /* ===== 図解ボックス ===== */
+  .diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+  .box {
+    background: #fff;
+    border-radius: 16px;
+    padding: 22px 28px;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    min-width: 160px;
+  }
+  .box-icon {
+    width: 56px; height: 56px;
+    margin: 0 auto 10px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: #fff;
+  }
+  .box-blue    .box-icon { background: linear-gradient(135deg, #4299e1, #3182ce); }
+  .box-green   .box-icon { background: linear-gradient(135deg, #48bb78, #2f855a); }
+  .box-orange  .box-icon { background: linear-gradient(135deg, #ed8936, #c05621); }
+  .box-purple  .box-icon { background: linear-gradient(135deg, #9f7aea, #6b46c1); }
+  .box-red     .box-icon { background: linear-gradient(135deg, #fc8181, #c53030); }
+  .box .label { font-size: 1.05rem; font-weight: 700; margin-bottom: 4px; }
+  .box .sub { font-size: 0.85rem; color: #718096; line-height: 1.5; }
+
+  .arrow {
+    font-size: 1.6rem;
+    color: #a0aec0;
+    flex-shrink: 0;
+  }
+
+  /* ===== カード ===== */
+  .card-row {
+    display: flex;
+    gap: 24px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 26px 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    flex: 1;
+    min-width: 260px;
+    max-width: 380px;
+  }
+  .card h3 {
+    font-size: 1.2rem;
+    font-weight: 900;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  .card p { font-size: 1.05rem; line-height: 1.8; }
+  .card-ok { border-left: 5px solid #48bb78; }
+  .card-ng { border-left: 5px solid #fc8181; }
+  .card-info { border-left: 5px solid #4299e1; }
+
+  /* ===== 吹き出し ===== */
+  .bubble {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    max-width: 600px;
+    position: relative;
+    margin: 16px auto;
+    font-size: 1.15rem;
+    line-height: 1.8;
+  }
+
+  /* ===== コードブロック ===== */
+  .code {
+    background: #2d3748;
+    color: #e2e8f0;
+    border-radius: 12px;
+    padding: 18px 24px;
+    font-family: "SF Mono", "Consolas", monospace;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin: 14px auto;
+    max-width: 560px;
+    text-align: left;
+  }
+  .code .g { color: #68d391; }
+  .code .b { color: #63b3ed; }
+  .code .dim { color: #718096; }
+
+  /* ===== イラスト代わりの図 ===== */
+  .illust {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.8rem;
+    margin: 0 auto 16px;
+  }
+  .illust-blue { background: linear-gradient(135deg, #bee3f8, #90cdf4); }
+  .illust-green { background: linear-gradient(135deg, #c6f6d5, #9ae6b4); }
+  .illust-orange { background: linear-gradient(135deg, #feebc8, #fbd38d); }
+  .illust-purple { background: linear-gradient(135deg, #e9d8fd, #d6bcfa); }
+
+  /* ===== たとえ話セクション ===== */
+  .analogy {
+    background: rgba(255,255,255,0.7);
+    border-radius: 16px;
+    padding: 24px 32px;
+    margin: 20px 0;
+    max-width: 650px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+  }
+  .analogy-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #6b46c1;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  .analogy p { font-size: 1.1rem; }
+
+  /* ===== ステップ ===== */
+  .steps {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  .step {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px 18px;
+    text-align: center;
+    width: 170px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    font-weight: 900;
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  .step-num-blue { background: #4299e1; }
+  .step-num-green { background: #48bb78; }
+  .step-num-purple { background: #9f7aea; }
+  .step-num-orange { background: #ed8936; }
+  .step-icon { font-size: 1.8rem; margin-bottom: 6px; }
+  .step-text { font-size: 0.9rem; line-height: 1.5; font-weight: 700; }
+
+  /* ===== サービスリスト ===== */
+  .svc-row {
+    display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin: 18px 0;
+  }
+  .svc {
+    background: #fff;
+    border-radius: 14px;
+    padding: 20px 24px;
+    text-align: center;
+    min-width: 180px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+  .svc-name { font-size: 1.1rem; font-weight: 900; margin-bottom: 4px; }
+  .svc-desc { font-size: 0.85rem; color: #718096; line-height: 1.5; }
+  .svc-badge {
+    display: inline-block;
+    background: #c6f6d5;
+    color: #22543d;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 8px;
+    margin-top: 6px;
+  }
+
+  /* ===== アドレスバー風 ===== */
+  .address-bar {
+    background: #fff;
+    border-radius: 10px;
+    padding: 12px 22px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    font-family: "SF Mono", "Consolas", monospace;
+    font-size: 1.15rem;
+    display: inline-block;
+    margin: 10px 0;
+    border: 2px solid #e2e8f0;
+  }
+  .address-bar .lock { color: #48bb78; margin-right: 6px; }
+
+  /* ===== ナビゲーション ===== */
+  .nav {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    z-index: 100;
+    background: rgba(255,255,255,0.9);
+    padding: 8px 22px;
+    border-radius: 28px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.1);
+    backdrop-filter: blur(8px);
+  }
+  .nav button {
+    background: #edf2f7;
+    border: none;
+    color: #2d3748;
+    font-size: 1.1rem;
+    padding: 8px 16px;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-weight: 700;
+  }
+  .nav button:hover { background: #e2e8f0; }
+  .nav button:disabled { opacity: 0.3; cursor: default; }
+  .nav .pg {
+    font-size: 0.9rem;
+    color: #a0aec0;
+    min-width: 56px;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  /* ===== レスポンシブ ===== */
+  @media (max-width: 700px) {
+    .slide { padding: 30px 24px; }
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.4rem; }
+    p { font-size: 1.05rem; }
+    .box { min-width: 130px; padding: 16px; }
+    .card { min-width: 220px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="slides">
+
+  <!-- 1: 表紙 -->
+  <div class="slide bg-sky active">
+    <div class="illust illust-blue">
+      <svg width="56" height="56" viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="24" stroke="#3182ce" stroke-width="3"/><ellipse cx="28" cy="28" rx="12" ry="24" stroke="#3182ce" stroke-width="2.5"/><line x1="4" y1="28" x2="52" y2="28" stroke="#3182ce" stroke-width="2.5"/><line x1="28" y1="4" x2="28" y2="52" stroke="#3182ce" stroke-width="2.5"/></svg>
+    </div>
+    <h1>「サーバー」ってなに？</h1>
+    <p style="text-align:center; color:#4a5568; font-size:1.2rem;">
+      Webアプリが動くしくみと、<br>世界に公開するまでの道のり
+    </p>
+    <p style="margin-top: 36px; color: #a0aec0; font-size: 0.95rem;">AIアプリコース｜Arschool</p>
+  </div>
+
+  <!-- 2: HTMLファイルを開くと -->
+  <div class="slide bg-cream">
+    <h2>HTMLファイルをダブルクリックすると</h2>
+    <div class="diagram">
+      <div class="box box-orange">
+        <div class="box-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <div class="label">index.html</div>
+        <div class="sub">ダブルクリック</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="box box-blue">
+        <div class="box-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div class="label">ブラウザで表示</div>
+        <div class="sub">Chrome / Safari</div>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:16px;">
+      このとき、ブラウザのアドレス欄には<br>こんな表示が出ます：
+    </p>
+    <div class="address-bar">
+      <span class="c-red">file://</span>/Users/tanaka/Desktop/index.html
+    </div>
+    <p style="text-align:center; margin-top:14px; font-size:1.15rem;">
+      これは<span class="c-red">パソコンの中のファイルを直接ひらいている</span>状態。<br>
+      インターネットにはつながっていません。
+    </p>
+  </div>
+
+  <!-- 3: 直接ひらくと困ること -->
+  <div class="slide bg-peach">
+    <h2>直接ひらくと困ることがある</h2>
+    <p style="text-align:center; margin-bottom:20px;">
+      HTMLファイルには <span class="c-blue">CSS</span> や <span class="c-blue">JavaScript</span> など<br>
+      他のファイルを読み込むための指示が書いてあります。
+    </p>
+    <div class="card-row">
+      <div class="card card-ok">
+        <h3>読み込める</h3>
+        <p>
+          <span class="c-green">HTMLに最初から書いてある</span>読み込み指示<br><br>
+          CSSファイル、JavaScriptファイルなど、<br>
+          HTMLが「このファイルも一緒に使います」と<br>
+          最初から宣言しているものは読み込めます。
+        </p>
+      </div>
+      <div class="card card-ng">
+        <h3>読み込めない</h3>
+        <p>
+          <span class="c-red">あとから追加で読みに行く</span>ファイル<br><br>
+          たとえばクイズの問題データ（JSONファイル）のように、<br>
+          JavaScriptが<span class="c-red">「実行中にこのデータをください」</span>と<br>
+          リクエストするものはブロックされます。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4: なぜブロック？ -->
+  <div class="slide bg-lavender">
+    <h2>なぜブロックされるの？</h2>
+    <div class="analogy">
+      <div class="analogy-title">たとえ話</div>
+      <p>
+        もしWebページが自由にパソコンの中のファイルを読めたら、<br>
+        <span class="c-red">悪意のあるサイトがパスワードや個人情報を<br>勝手にのぞき見できてしまいます。</span><br><br>
+        だからブラウザは<span class="c-purple">「安全のために、<br>パソコンのファイルへの自由なアクセスは禁止！」</span><br>
+        というルールであなたのパソコンを守っています。
+      </p>
+    </div>
+    <div class="illust illust-purple">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#6b46c1" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/></svg>
+    </div>
+    <p style="text-align:center; font-size:1.15rem;">
+      このセキュリティの仕組みがあるから、<br>
+      <span class="c-blue">file://</span> でひらいたページでは<br>
+      JSONのようなデータファイルを読み込めないのです。
+    </p>
+  </div>
+
+  <!-- 5: サーバーとは -->
+  <div class="slide bg-mint">
+    <h2>「サーバー」ってなに？</h2>
+    <div class="analogy">
+      <div class="analogy-title">たとえ話</div>
+      <p>
+        レストランで注文すると、<span class="c-green">ウェイター</span>が料理を持ってきてくれますよね。<br><br>
+        Webの世界でも同じで、ブラウザが「このページをください」とお願いすると、<br>
+        <span class="c-green">サーバー</span>がファイルを届けてくれます。<br><br>
+        「サーバー（server）」は英語で<span class="c-green">「届ける人・給仕する人」</span>という意味です。
+      </p>
+    </div>
+    <div class="diagram">
+      <div class="box box-blue">
+        <div class="box-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div class="label">ブラウザ</div>
+        <div class="sub">「このページちょうだい！」</div>
+      </div>
+      <div class="arrow">⇄</div>
+      <div class="box box-green">
+        <div class="box-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+        </div>
+        <div class="label">サーバー</div>
+        <div class="sub">「はいどうぞ！」</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6: ローカルサーバー -->
+  <div class="slide bg-sky">
+    <h2>「ローカルサーバー」は<br>自分のパソコンで動くサーバー</h2>
+    <p style="text-align:center; margin-bottom:18px; font-size:1.15rem;">
+      開発中は、インターネット上のサーバーではなく<br>
+      <span class="c-blue">自分のパソコンの中に小さなサーバーを立てて</span>テストします。
+    </p>
+    <div class="card-row">
+      <div class="card card-ng">
+        <h3>直接ひらく</h3>
+        <p>
+          アドレス：<span class="c-red">file://</span>...<br><br>
+          サーバーなしで直接ひらく<br>
+          → データの読み込みが<span class="c-red">できない</span><br>
+          → アプリが<span class="c-red">動かない</span>
+        </p>
+      </div>
+      <div class="card card-ok">
+        <h3>ローカルサーバー経由</h3>
+        <p>
+          アドレス：<span class="c-green">http://localhost:8080</span><br><br>
+          サーバーを通してひらく<br>
+          → データの読み込みが<span class="c-green">できる</span><br>
+          → アプリが<span class="c-green">ちゃんと動く！</span>
+        </p>
+      </div>
+    </div>
+    <p class="note">
+      「localhost」は「自分のパソコン」を指す特別なアドレスです。<br>
+      外からはアクセスできない、自分だけのサーバーです。
+    </p>
+  </div>
+
+  <!-- 7: ローカルサーバーの立て方 -->
+  <div class="slide bg-cream">
+    <h2>ローカルサーバーの立て方</h2>
+    <div class="card-row">
+      <div class="card card-info">
+        <h3>方法 1：VS Codeの「Live Server」</h3>
+        <p style="margin-top:14px;">
+          VS Codeに <span class="c-blue">Live Server</span> という<br>
+          拡張機能を入れておきます。<br><br>
+          <span class="c-blue">1.</span> VS Codeで <span class="c-green">index.html</span> を選択する<br>
+          <span class="c-blue">2.</span> 右下の「<span class="c-green">Go Live</span>」ボタンを押す<br><br>
+          これだけでサーバーが立ち上がり、<br>
+          ブラウザでアプリが自動で開きます。<br>
+          ファイルを保存するたびに画面も更新されます。
+        </p>
+      </div>
+      <div class="card card-info">
+        <h3>方法 2：AIに頼む</h3>
+        <p style="margin-top:14px;">
+          GitHub CopilotやCodexなどの<br>
+          AIエージェントに<br><br>
+          <span style="background:#edf2f7; border-radius:8px; padding:6px 12px; display:inline-block; font-size:0.95rem;">
+            「ローカルサーバーを立てて<br>ブラウザで開いて」
+          </span><br><br>
+          とお願いするだけでもOK！<br>
+          AIが自動でサーバーを起動して<br>
+          ブラウザで開いてくれます。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8: 世界に公開するには -->
+  <div class="slide bg-lemon">
+    <h2>作ったアプリをみんなに見せたい！</h2>
+    <p style="text-align:center; margin-bottom:18px; font-size:1.15rem;">
+      ローカルサーバーは<span class="c-orange">自分のパソコンだけ</span>のものなので、<br>
+      ほかの人はアクセスできません。
+    </p>
+    <p style="text-align:center; margin-bottom:20px; font-size:1.15rem;">
+      世界中の人に見てもらうには、<br>
+      <span class="c-blue">インターネット上のサーバー</span>にファイルを置きます。
+    </p>
+    <div class="diagram">
+      <div class="box box-orange">
+        <div class="box-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div class="label">きみのPC</div>
+        <div class="sub">ファイルを作る</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="box box-blue">
+        <div class="box-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+        </div>
+        <div class="label">サーバー</div>
+        <div class="sub">アップロード</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="box box-green">
+        <div class="box-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="label">世界中の人</div>
+        <div class="sub">ブラウザで見られる</div>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:14px;">
+      サーバーに置いたページには<br>
+      <span class="address-bar"><span class="lock">🔒</span><span class="c-green">https://</span>myquiz.example.com</span><br>
+      <span style="font-size:1rem; color:#718096;">のようなアドレスでアクセスできます。</span>
+    </p>
+  </div>
+
+  <!-- 9: 公開に必要なもの -->
+  <div class="slide bg-lavender">
+    <h2>公開するために必要なもの</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num step-num-blue">1</div>
+        <div class="step-text" style="font-size:1rem;">
+          <span class="c-blue">ホスティング<br>サービス</span><br>
+          <span style="font-size:0.85rem; color:#718096;">ファイルを預かって<br>世界に公開してくれる<br>サービス</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num step-num-green">2</div>
+        <div class="step-text" style="font-size:1rem;">
+          <span class="c-green">URL<br>（アドレス）</span><br>
+          <span style="font-size:0.85rem; color:#718096;">サイトの住所。<br>サービスが自動で<br>つけてくれることも</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num step-num-purple">3</div>
+        <div class="step-text" style="font-size:1rem;">
+          <span class="c-purple">アップロード</span><br>
+          <span style="font-size:0.85rem; color:#718096;">HTML・CSS・JS・<br>画像ファイルを<br>サーバーに送る</span>
+        </div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:16px;">
+      むずかしそうに見えますが、<br>
+      最近は無料のサービスを使えばとても簡単にできます。
+    </p>
+  </div>
+
+  <!-- 10: 無料で公開できるサービス -->
+  <div class="slide bg-mint">
+    <h2>無料で公開できるサービス</h2>
+    <div class="svc-row">
+      <div class="svc">
+        <div class="svc-name">GitHub Pages</div>
+        <div class="svc-desc">GitHubにファイルを<br>置くだけで公開できる</div>
+        <div class="svc-badge">無料</div>
+      </div>
+      <div class="svc">
+        <div class="svc-name">Netlify</div>
+        <div class="svc-desc">フォルダをドラッグ&<br>ドロップで公開</div>
+        <div class="svc-badge">無料</div>
+      </div>
+      <div class="svc">
+        <div class="svc-name">Vercel</div>
+        <div class="svc-desc">GitHubと連携して<br>自動で公開</div>
+        <div class="svc-badge">無料</div>
+      </div>
+    </div>
+    <div class="bubble" style="margin-top:16px;">
+      <p style="font-size: 1.1rem;">
+        このコースでは <span class="c-blue">GitHub</span> を使っているので、<br>
+        <span class="c-blue">GitHub Pages</span> がいちばん始めやすいです。<br>
+        自分のアプリに <span class="c-green">https://</span> ではじまるアドレスがもらえて、<br>
+        友だちにURLを送るだけで見てもらえます。
+      </p>
+    </div>
+  </div>
+
+  <!-- 11: 開発→公開の全体像 -->
+  <div class="slide bg-sky">
+    <h2>開発から公開までの流れ</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num step-num-blue">1</div>
+        <div class="step-text">VS Codeで<br>コードを書く</div>
+      </div>
+      <div class="step">
+        <div class="step-num step-num-green">2</div>
+        <div class="step-text">ローカルサーバーで<br>動作を確認</div>
+      </div>
+      <div class="step">
+        <div class="step-num step-num-purple">3</div>
+        <div class="step-text">GitHubに<br>アップロード</div>
+      </div>
+      <div class="step">
+        <div class="step-num step-num-orange">4</div>
+        <div class="step-text">GitHub Pagesで<br>世界に公開！</div>
+      </div>
+    </div>
+    <div class="bubble" style="margin-top:24px;">
+      <p style="text-align:center; font-size:1.2rem;">
+        実はこの流れ、<span class="c-blue">プロのエンジニアもまったく同じ</span>です。<br>
+        みんなはプロと同じやり方でアプリを作っているんです。
+      </p>
+    </div>
+  </div>
+
+  <!-- 12: まとめ -->
+  <div class="slide bg-cream">
+    <div class="illust illust-green">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#2f855a" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h1>まとめ</h1>
+    <div style="max-width: 600px; text-align: left;">
+      <div class="bubble" style="margin: 12px 0;">
+        <p><span class="c-green">サーバー</span>はファイルを届けてくれる役割のコンピューター</p>
+      </div>
+      <div class="bubble" style="margin: 12px 0;">
+        <p>開発中は<span class="c-blue">ローカルサーバー</span>（自分のPCで動くサーバー）を使って<br>アプリの動作を確認する</p>
+      </div>
+      <div class="bubble" style="margin: 12px 0;">
+        <p>完成したら <span class="c-purple">GitHub Pages</span> などで世界に公開できる。<br>
+        <span class="c-green">https://</span> で始まるアドレスで誰でもアクセスできるようになる</p>
+      </div>
+    </div>
+    <p style="margin-top: 30px; color: #a0aec0; font-size: 0.95rem;">AIアプリコース｜Arschool</p>
+  </div>
+
+</div>
+
+<!-- ナビゲーション -->
+<div class="nav">
+  <button id="prev-btn" disabled>◀ 前へ</button>
+  <span class="pg"><span id="cp">1</span> / <span id="tp">12</span></span>
+  <button id="next-btn">次へ ▶</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+  const cpEl = document.getElementById('cp');
+  let cur = 0;
+
+  function go(n) {
+    slides.forEach(s => s.classList.remove('active'));
+    slides[n].classList.add('active');
+    cur = n;
+    cpEl.textContent = n + 1;
+    prevBtn.disabled = n === 0;
+    nextBtn.disabled = n === slides.length - 1;
+  }
+
+  prevBtn.addEventListener('click', () => { if (cur > 0) go(cur - 1); });
+  nextBtn.addEventListener('click', () => { if (cur < slides.length - 1) go(cur + 1); });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); if (cur < slides.length - 1) go(cur + 1); }
+    if (e.key === 'ArrowLeft') { if (cur > 0) go(cur - 1); }
+  });
+</script>
+
+</body>
+</html>
