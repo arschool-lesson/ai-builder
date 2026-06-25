@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>世界の国旗クイズ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ===== スタート画面 ===== -->
+  <div id="start-screen" class="screen active">
+    <div class="globe-bg"></div>
+    <div class="start-content">
+      <h1 class="game-title">世界の国旗クイズ</h1>
+      <p class="subtitle">君はいくつの国旗が分かるかな？</p>
+
+      <div class="settings-card">
+        <div class="setting-group">
+          <h2 class="setting-label">地域</h2>
+          <div class="btn-group" id="region-buttons">
+            <button class="filter-btn selected" data-value="all">全て</button>
+            <button class="filter-btn" data-value="アジア">アジア</button>
+            <button class="filter-btn" data-value="ヨーロッパ">ヨーロッパ</button>
+            <button class="filter-btn" data-value="アフリカ">アフリカ</button>
+            <button class="filter-btn" data-value="北アメリカ">北アメリカ</button>
+            <button class="filter-btn" data-value="南アメリカ">南アメリカ</button>
+            <button class="filter-btn" data-value="オセアニア">オセアニア</button>
+          </div>
+        </div>
+
+        <div class="setting-group">
+          <h2 class="setting-label">難易度</h2>
+          <div class="btn-group" id="difficulty-buttons">
+            <button class="filter-btn selected" data-value="all">全て</button>
+            <button class="filter-btn" data-value="1">簡単</button>
+            <button class="filter-btn" data-value="2">普通</button>
+            <button class="filter-btn" data-value="3">難しい</button>
+          </div>
+        </div>
+
+        <div class="question-count" id="question-count">
+          出題数: <span id="count-number">254</span> 問
+        </div>
+      </div>
+
+      <button class="start-btn" id="start-btn">スタート</button>
+    </div>
+  </div>
+
+  <!-- ===== クイズ画面 ===== -->
+  <div id="quiz-screen" class="screen">
+    <div class="quiz-header">
+      <button class="home-btn" id="home-btn" title="ホームに戻る" aria-label="ホームに戻る">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 11l9-8 9 8"/>
+          <path d="M5 10v10h14V10"/>
+        </svg>
+      </button>
+      <div class="progress-info">
+        <span id="current-number">1</span> / <span id="total-number">10</span> 問
+      </div>
+      <div class="score-info">
+        <span class="score-correct"><span class="mark">○</span> <span id="score-correct">0</span></span>
+        <span class="score-wrong"><span class="mark">×</span> <span id="score-wrong">0</span></span>
+      </div>
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+
+    <div class="quiz-body">
+      <div class="flag-card" id="flag-card">
+        <div class="region-badge" id="region-badge">アジア</div>
+        <div class="difficulty-stars" id="difficulty-stars">★☆☆</div>
+        <img id="flag-image" src="" alt="国旗">
+      </div>
+
+      <p class="question-text">この国旗はどこの国？</p>
+
+      <div class="choices" id="choices">
+        <button class="choice-btn" data-index="0"></button>
+        <button class="choice-btn" data-index="1"></button>
+        <button class="choice-btn" data-index="2"></button>
+        <button class="choice-btn" data-index="3"></button>
+      </div>
+    </div>
+
+    <!-- 正解・不正解のオーバーレイ -->
+    <div class="result-overlay" id="result-overlay">
+      <div class="result-icon" id="result-icon"></div>
+      <div class="result-text" id="result-text"></div>
+      <div class="result-answer" id="result-answer"></div>
+    </div>
+  </div>
+
+  <!-- ===== 結果画面 ===== -->
+  <div id="result-screen" class="screen">
+    <div class="result-content">
+      <h1 class="result-title" id="result-title">お疲れ様！</h1>
+      <div class="score-card">
+        <div class="final-score">
+          <span class="big-score" id="final-correct">0</span>
+          <span class="score-divider">/</span>
+          <span class="big-total" id="final-total">0</span>
+          <span class="score-label">問正解</span>
+        </div>
+        <div class="score-percentage" id="score-percentage">0%</div>
+        <div class="score-rank" id="score-rank"></div>
+      </div>
+
+      <div class="wrong-list-section" id="wrong-list-section" style="display:none;">
+        <h2>間違えた問題</h2>
+        <div class="wrong-list" id="wrong-list"></div>
+      </div>
+
+      <button class="start-btn" id="retry-btn">もう一度</button>
+      <button class="back-btn" id="back-btn">トップに戻る</button>
+    </div>
+  </div>
+
+  <!-- ===== 確認モーダル ===== -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <h2 class="modal-title" id="modal-title">ホームに戻る？</h2>
+      <p class="modal-text">今のクイズは終わります。<br>途中のスコアは消えてしまうよ。</p>
+      <div class="modal-actions">
+        <button class="modal-btn modal-btn-cancel" id="modal-cancel">続ける</button>
+        <button class="modal-btn modal-btn-ok" id="modal-ok">ホームへ</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

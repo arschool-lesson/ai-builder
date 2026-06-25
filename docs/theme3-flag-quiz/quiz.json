@@ -1,0 +1,3558 @@
+[
+  {
+    "code": "in",
+    "country": "インド",
+    "image": "flags/in.png",
+    "region": "アジア",
+    "difficulty": 1,
+    "choices": [
+      "韓国",
+      "インド",
+      "バーレーン",
+      "タイ"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "sa",
+    "country": "サウジアラビア",
+    "image": "flags/sa.png",
+    "region": "アジア",
+    "difficulty": 1,
+    "choices": [
+      "スリランカ",
+      "キプロス",
+      "サウジアラビア",
+      "日本"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "th",
+    "country": "タイ",
+    "image": "flags/th.png",
+    "region": "アジア",
+    "difficulty": 1,
+    "choices": [
+      "インドネシア",
+      "タイ",
+      "モンゴル",
+      "オマーン"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "tr",
+    "country": "トルコ",
+    "image": "flags/tr.png",
+    "region": "アジア",
+    "difficulty": 1,
+    "choices": [
+      "トルコ",
+      "ジョージア",
+      "タイ",
+      "イエメン"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "cn",
+    "country": "中国",
+    "image": "flags/cn.png",
+    "region": "アジア",
+    "difficulty": 1,
+    "choices": [
+      "中国",
+      "東ティモール",
+      "ヨルダン",
+      "スリランカ"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "jp",
+    "country": "日本",
+    "image": "flags/jp.png",
+    "region": "アジア",
+    "difficulty": 1,
+    "choices": [
+      "ウズベキスタン",
+      "日本",
+      "マレーシア",
+      "オマーン"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "kr",
+    "country": "韓国",
+    "image": "flags/kr.png",
+    "region": "アジア",
+    "difficulty": 1,
+    "choices": [
+      "バングラデシュ",
+      "タジキスタン",
+      "韓国",
+      "日本"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "af",
+    "country": "アフガニスタン",
+    "image": "flags/af.png",
+    "region": "アジア",
+    "difficulty": 2,
+    "choices": [
+      "アフガニスタン",
+      "ネパール",
+      "日本",
+      "トルクメニスタン"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "ae",
+    "country": "アラブ首長国連邦",
+    "image": "flags/ae.png",
+    "region": "アジア",
+    "difficulty": 2,
+    "choices": [
+      "スリランカ",
+      "アラブ首長国連邦",
+      "ネパール",
+      "ウズベキスタン"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "il",
+    "country": "イスラエル",
+    "image": "flags/il.png",
+    "region": "アジア",
+    "difficulty": 2,
+    "choices": [
+      "バングラデシュ",
+      "ラオス",
+      "モルディブ",
+      "イスラエル"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "iq",
+    "country": "イラク",
+    "image": "flags/iq.png",
+    "region": "アジア",
+    "difficulty": 2,
+    "choices": [
+      "バーレーン",
+      "イラク",
+      "フィリピン",
+      "ラオス"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "ir",
+    "country": "イラン",
+    "image": "flags/ir.png",
+    "region": "アジア",
+    "difficulty": 2,
+    "choices": [
+      "ネパール",
+      "イラン",
+      "タジキスタン",
+      "イエメン"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "id",
+    "country": "インドネシア",
+    "image": "flags/id.png",
+    "region": "アジア",
+    "difficulty": 2,
+    "choices": [
+      "ラオス",
+      "パキスタン",
+      "オマーン",
+      "インドネシア"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "qa",
+    "country": "カタール",
+    "image": "flags/qa.png",
+    "region": "アジア",
+    "difficulty": 2,
+    "choices": [
+      "シンガポール",
+      "カタール",
+      "香港",
+      "タジキスタン"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "kh",
+    "country": "カンボジア",
+    "image": "flags/kh.png",
+    "region": "アジア",
+    "difficulty": 2,
+    "choices": [
+      "カンボジア",
+      "韓国",
+      "バングラデシュ",
+      "オマーン"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "sy",
+    "country": "シリア",
+    "image": "flags/sy.png",
+    "region": "アジア",
+    "difficulty": 2,
+    "choices": [
+      "東ティモール",
+      "トルクメニスタン",
+      "シリア",
+      "カタール"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "sg",
+    "country": "シンガポール",
+    "image": "flags/sg.png",
+    "region": "アジア",
+    "difficulty": 2,
+    "choices": [
+      "香港",
+      "アルメニア",
+      "シンガポール",
+      "イエメン"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "lk",
+    "country": "スリランカ",
+    "image": "flags/lk.png",
+    "region": "アジア",
+    "difficulty": 2,
+    "choices": [
+      "スリランカ",
+      "タジキスタン",
+      "フィリピン",
+      "イラン"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "np",
+    "country": "ネパール",
+    "image": "flags/np.png",
+    "region": "アジア",
+    "difficulty": 2,
+    "choices": [
+      "トルクメニスタン",
+      "モンゴル",
+      "香港",
+      "ネパール"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "bd",
+    "country": "バングラデシュ",
+    "image": "flags/bd.png",
+    "region": "アジア",
+    "difficulty": 2,
+    "choices": [
+      "バングラデシュ",
+      "タイ",
+      "アゼルバイジャン",
+      "インド"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "pk",
+    "country": "パキスタン",
+    "image": "flags/pk.png",
+    "region": "アジア",
+    "difficulty": 2,
+    "choices": [
+      "パレスチナ",
+      "バーレーン",
+      "パキスタン",
+      "トルコ"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "ph",
+    "country": "フィリピン",
+    "image": "flags/ph.png",
+    "region": "アジア",
+    "difficulty": 2,
+    "choices": [
+      "日本",
+      "フィリピン",
+      "ネパール",
+      "アフガニスタン"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "vn",
+    "country": "ベトナム",
+    "image": "flags/vn.png",
+    "region": "アジア",
+    "difficulty": 2,
+    "choices": [
+      "インド",
+      "バングラデシュ",
+      "パレスチナ",
+      "ベトナム"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "my",
+    "country": "マレーシア",
+    "image": "flags/my.png",
+    "region": "アジア",
+    "difficulty": 2,
+    "choices": [
+      "ベトナム",
+      "オマーン",
+      "ウズベキスタン",
+      "マレーシア"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "mm",
+    "country": "ミャンマー",
+    "image": "flags/mm.png",
+    "region": "アジア",
+    "difficulty": 2,
+    "choices": [
+      "レバノン",
+      "クウェート",
+      "ミャンマー",
+      "モルディブ"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "mn",
+    "country": "モンゴル",
+    "image": "flags/mn.png",
+    "region": "アジア",
+    "difficulty": 2,
+    "choices": [
+      "日本",
+      "モンゴル",
+      "北朝鮮",
+      "フィリピン"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "kp",
+    "country": "北朝鮮",
+    "image": "flags/kp.png",
+    "region": "アジア",
+    "difficulty": 2,
+    "choices": [
+      "マレーシア",
+      "北朝鮮",
+      "フィリピン",
+      "インド"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "tw",
+    "country": "台湾",
+    "image": "flags/tw.png",
+    "region": "アジア",
+    "difficulty": 2,
+    "choices": [
+      "ブルネイ",
+      "台湾",
+      "カンボジア",
+      "バーレーン"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "hk",
+    "country": "香港",
+    "image": "flags/hk.png",
+    "region": "アジア",
+    "difficulty": 2,
+    "choices": [
+      "インドネシア",
+      "キプロス",
+      "シンガポール",
+      "香港"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "az",
+    "country": "アゼルバイジャン",
+    "image": "flags/az.png",
+    "region": "アジア",
+    "difficulty": 3,
+    "choices": [
+      "アゼルバイジャン",
+      "バングラデシュ",
+      "シンガポール",
+      "イラク"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "am",
+    "country": "アルメニア",
+    "image": "flags/am.png",
+    "region": "アジア",
+    "difficulty": 3,
+    "choices": [
+      "インドネシア",
+      "シンガポール",
+      "モルディブ",
+      "アルメニア"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "ye",
+    "country": "イエメン",
+    "image": "flags/ye.png",
+    "region": "アジア",
+    "difficulty": 3,
+    "choices": [
+      "タイ",
+      "イラン",
+      "イエメン",
+      "アゼルバイジャン"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "uz",
+    "country": "ウズベキスタン",
+    "image": "flags/uz.png",
+    "region": "アジア",
+    "difficulty": 3,
+    "choices": [
+      "韓国",
+      "中国",
+      "ウズベキスタン",
+      "アゼルバイジャン"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "om",
+    "country": "オマーン",
+    "image": "flags/om.png",
+    "region": "アジア",
+    "difficulty": 3,
+    "choices": [
+      "シリア",
+      "オマーン",
+      "台湾",
+      "カンボジア"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "kz",
+    "country": "カザフスタン",
+    "image": "flags/kz.png",
+    "region": "アジア",
+    "difficulty": 3,
+    "choices": [
+      "アフガニスタン",
+      "ブルネイ",
+      "カザフスタン",
+      "韓国"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "cy",
+    "country": "キプロス",
+    "image": "flags/cy.png",
+    "region": "アジア",
+    "difficulty": 3,
+    "choices": [
+      "クウェート",
+      "レバノン",
+      "キプロス",
+      "アゼルバイジャン"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "kg",
+    "country": "キルギス",
+    "image": "flags/kg.png",
+    "region": "アジア",
+    "difficulty": 3,
+    "choices": [
+      "ラオス",
+      "キルギス",
+      "中国",
+      "バングラデシュ"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "kw",
+    "country": "クウェート",
+    "image": "flags/kw.png",
+    "region": "アジア",
+    "difficulty": 3,
+    "choices": [
+      "タイ",
+      "カンボジア",
+      "ブータン",
+      "クウェート"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "ge",
+    "country": "ジョージア",
+    "image": "flags/ge.png",
+    "region": "アジア",
+    "difficulty": 3,
+    "choices": [
+      "インド",
+      "アフガニスタン",
+      "モンゴル",
+      "ジョージア"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "tj",
+    "country": "タジキスタン",
+    "image": "flags/tj.png",
+    "region": "アジア",
+    "difficulty": 3,
+    "choices": [
+      "香港",
+      "マレーシア",
+      "タジキスタン",
+      "イラン"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "tm",
+    "country": "トルクメニスタン",
+    "image": "flags/tm.png",
+    "region": "アジア",
+    "difficulty": 3,
+    "choices": [
+      "台湾",
+      "トルクメニスタン",
+      "ブルネイ",
+      "バングラデシュ"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "bh",
+    "country": "バーレーン",
+    "image": "flags/bh.png",
+    "region": "アジア",
+    "difficulty": 3,
+    "choices": [
+      "香港",
+      "ミャンマー",
+      "ジョージア",
+      "バーレーン"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "ps",
+    "country": "パレスチナ",
+    "image": "flags/ps.png",
+    "region": "アジア",
+    "difficulty": 3,
+    "choices": [
+      "台湾",
+      "キルギス",
+      "ブルネイ",
+      "パレスチナ"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "bn",
+    "country": "ブルネイ",
+    "image": "flags/bn.png",
+    "region": "アジア",
+    "difficulty": 3,
+    "choices": [
+      "ブルネイ",
+      "イエメン",
+      "中国",
+      "シリア"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "bt",
+    "country": "ブータン",
+    "image": "flags/bt.png",
+    "region": "アジア",
+    "difficulty": 3,
+    "choices": [
+      "イスラエル",
+      "ブータン",
+      "カタール",
+      "バーレーン"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "mo",
+    "country": "マカオ",
+    "image": "flags/mo.png",
+    "region": "アジア",
+    "difficulty": 3,
+    "choices": [
+      "イエメン",
+      "アルメニア",
+      "ヨルダン",
+      "マカオ"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "mv",
+    "country": "モルディブ",
+    "image": "flags/mv.png",
+    "region": "アジア",
+    "difficulty": 3,
+    "choices": [
+      "カザフスタン",
+      "イエメン",
+      "カタール",
+      "モルディブ"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "jo",
+    "country": "ヨルダン",
+    "image": "flags/jo.png",
+    "region": "アジア",
+    "difficulty": 3,
+    "choices": [
+      "フィリピン",
+      "ヨルダン",
+      "インドネシア",
+      "イラン"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "la",
+    "country": "ラオス",
+    "image": "flags/la.png",
+    "region": "アジア",
+    "difficulty": 3,
+    "choices": [
+      "アルメニア",
+      "ラオス",
+      "カタール",
+      "キプロス"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "lb",
+    "country": "レバノン",
+    "image": "flags/lb.png",
+    "region": "アジア",
+    "difficulty": 3,
+    "choices": [
+      "アルメニア",
+      "ジョージア",
+      "ネパール",
+      "レバノン"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "tl",
+    "country": "東ティモール",
+    "image": "flags/tl.png",
+    "region": "アジア",
+    "difficulty": 3,
+    "choices": [
+      "トルクメニスタン",
+      "パキスタン",
+      "東ティモール",
+      "イラク"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "eg",
+    "country": "エジプト",
+    "image": "flags/eg.png",
+    "region": "アフリカ",
+    "difficulty": 1,
+    "choices": [
+      "スーダン",
+      "エジプト",
+      "アンゴラ",
+      "ベナン"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "za",
+    "country": "南アフリカ",
+    "image": "flags/za.png",
+    "region": "アフリカ",
+    "difficulty": 1,
+    "choices": [
+      "南アフリカ",
+      "ボツワナ",
+      "コンゴ民主共和国",
+      "モーリシャス"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "dz",
+    "country": "アルジェリア",
+    "image": "flags/dz.png",
+    "region": "アフリカ",
+    "difficulty": 2,
+    "choices": [
+      "中央アフリカ",
+      "アルジェリア",
+      "カーボベルデ",
+      "リベリア"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "et",
+    "country": "エチオピア",
+    "image": "flags/et.png",
+    "region": "アフリカ",
+    "difficulty": 2,
+    "choices": [
+      "ウガンダ",
+      "ガボン",
+      "シエラレオネ",
+      "エチオピア"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "cm",
+    "country": "カメルーン",
+    "image": "flags/cm.png",
+    "region": "アフリカ",
+    "difficulty": 2,
+    "choices": [
+      "ジンバブエ",
+      "ソマリア",
+      "レユニオン",
+      "カメルーン"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "gh",
+    "country": "ガーナ",
+    "image": "flags/gh.png",
+    "region": "アフリカ",
+    "difficulty": 2,
+    "choices": [
+      "アルジェリア",
+      "モザンビーク",
+      "ガーナ",
+      "ギニアビサウ"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "ke",
+    "country": "ケニア",
+    "image": "flags/ke.png",
+    "region": "アフリカ",
+    "difficulty": 2,
+    "choices": [
+      "ジブチ",
+      "モロッコ",
+      "ケニア",
+      "アルジェリア"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "tz",
+    "country": "タンザニア",
+    "image": "flags/tz.png",
+    "region": "アフリカ",
+    "difficulty": 2,
+    "choices": [
+      "レユニオン",
+      "シエラレオネ",
+      "タンザニア",
+      "ナミビア"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "tn",
+    "country": "チュニジア",
+    "image": "flags/tn.png",
+    "region": "アフリカ",
+    "difficulty": 2,
+    "choices": [
+      "ブルキナファソ",
+      "チュニジア",
+      "シエラレオネ",
+      "マリ"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "ng",
+    "country": "ナイジェリア",
+    "image": "flags/ng.png",
+    "region": "アフリカ",
+    "difficulty": 2,
+    "choices": [
+      "シエラレオネ",
+      "コンゴ共和国",
+      "ザンビア",
+      "ナイジェリア"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "mg",
+    "country": "マダガスカル",
+    "image": "flags/mg.png",
+    "region": "アフリカ",
+    "difficulty": 2,
+    "choices": [
+      "エスワティニ",
+      "マダガスカル",
+      "モロッコ",
+      "リベリア"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "ma",
+    "country": "モロッコ",
+    "image": "flags/ma.png",
+    "region": "アフリカ",
+    "difficulty": 2,
+    "choices": [
+      "ブルキナファソ",
+      "リビア",
+      "モロッコ",
+      "ジブチ"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "ao",
+    "country": "アンゴラ",
+    "image": "flags/ao.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "エチオピア",
+      "モザンビーク",
+      "ギニア",
+      "アンゴラ"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "ug",
+    "country": "ウガンダ",
+    "image": "flags/ug.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "ウガンダ",
+      "カメルーン",
+      "コンゴ共和国",
+      "セネガル"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "sz",
+    "country": "エスワティニ",
+    "image": "flags/sz.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "コンゴ民主共和国",
+      "モザンビーク",
+      "ベナン",
+      "エスワティニ"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "er",
+    "country": "エリトリア",
+    "image": "flags/er.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "コンゴ民主共和国",
+      "コンゴ共和国",
+      "ナイジェリア",
+      "エリトリア"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "cv",
+    "country": "カーボベルデ",
+    "image": "flags/cv.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "ケニア",
+      "カーボベルデ",
+      "ウガンダ",
+      "南スーダン"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "ga",
+    "country": "ガボン",
+    "image": "flags/ga.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "ガボン",
+      "ザンビア",
+      "スーダン",
+      "サントメ・プリンシペ"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "gm",
+    "country": "ガンビア",
+    "image": "flags/gm.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "エリトリア",
+      "ガンビア",
+      "ザンビア",
+      "セントヘレナ"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "gn",
+    "country": "ギニア",
+    "image": "flags/gn.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "ザンビア",
+      "セーシェル",
+      "ギニア",
+      "コートジボワール"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "gw",
+    "country": "ギニアビサウ",
+    "image": "flags/gw.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "ギニアビサウ",
+      "セネガル",
+      "南アフリカ",
+      "エチオピア"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "km",
+    "country": "コモロ",
+    "image": "flags/km.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "コモロ",
+      "ウガンダ",
+      "モーリタニア",
+      "サントメ・プリンシペ"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "cg",
+    "country": "コンゴ共和国",
+    "image": "flags/cg.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "モーリシャス",
+      "エジプト",
+      "カーボベルデ",
+      "コンゴ共和国"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "cd",
+    "country": "コンゴ民主共和国",
+    "image": "flags/cd.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "エスワティニ",
+      "モーリシャス",
+      "アルジェリア",
+      "コンゴ民主共和国"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "ci",
+    "country": "コートジボワール",
+    "image": "flags/ci.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "カメルーン",
+      "コートジボワール",
+      "レユニオン",
+      "中央アフリカ"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "st",
+    "country": "サントメ・プリンシペ",
+    "image": "flags/st.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "ソマリア",
+      "西サハラ",
+      "コモロ",
+      "サントメ・プリンシペ"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "zm",
+    "country": "ザンビア",
+    "image": "flags/zm.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "シエラレオネ",
+      "ザンビア",
+      "ルワンダ",
+      "ソマリア"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "sl",
+    "country": "シエラレオネ",
+    "image": "flags/sl.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "シエラレオネ",
+      "ルワンダ",
+      "コモロ",
+      "マヨット"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "dj",
+    "country": "ジブチ",
+    "image": "flags/dj.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "ジブチ",
+      "シエラレオネ",
+      "ガーナ",
+      "ギニアビサウ"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "zw",
+    "country": "ジンバブエ",
+    "image": "flags/zw.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "レソト",
+      "ボツワナ",
+      "ジンバブエ",
+      "チュニジア"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "sd",
+    "country": "スーダン",
+    "image": "flags/sd.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "ルワンダ",
+      "コンゴ民主共和国",
+      "スーダン",
+      "ブルンジ"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "sn",
+    "country": "セネガル",
+    "image": "flags/sn.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "シエラレオネ",
+      "ブルキナファソ",
+      "アルジェリア",
+      "セネガル"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "sh",
+    "country": "セントヘレナ",
+    "image": "flags/sh.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "カメルーン",
+      "中央アフリカ",
+      "セントヘレナ",
+      "ルワンダ"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "sc",
+    "country": "セーシェル",
+    "image": "flags/sc.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "セーシェル",
+      "ガボン",
+      "コモロ",
+      "リビア"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "so",
+    "country": "ソマリア",
+    "image": "flags/so.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "アンゴラ",
+      "アルジェリア",
+      "ウガンダ",
+      "ソマリア"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "td",
+    "country": "チャド",
+    "image": "flags/td.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "チャド",
+      "ボツワナ",
+      "モザンビーク",
+      "ガンビア"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "tg",
+    "country": "トーゴ",
+    "image": "flags/tg.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "コンゴ民主共和国",
+      "アンゴラ",
+      "トーゴ",
+      "カメルーン"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "na",
+    "country": "ナミビア",
+    "image": "flags/na.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "レユニオン",
+      "カメルーン",
+      "ナミビア",
+      "コンゴ民主共和国"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "ne",
+    "country": "ニジェール",
+    "image": "flags/ne.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "エスワティニ",
+      "カメルーン",
+      "ニジェール",
+      "モーリシャス"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "bf",
+    "country": "ブルキナファソ",
+    "image": "flags/bf.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "モーリシャス",
+      "ブルキナファソ",
+      "ジンバブエ",
+      "レユニオン"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "bi",
+    "country": "ブルンジ",
+    "image": "flags/bi.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "ブルンジ",
+      "エスワティニ",
+      "ジンバブエ",
+      "マラウイ"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "bj",
+    "country": "ベナン",
+    "image": "flags/bj.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "ガンビア",
+      "リビア",
+      "モーリシャス",
+      "ベナン"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "bw",
+    "country": "ボツワナ",
+    "image": "flags/bw.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "コンゴ民主共和国",
+      "ボツワナ",
+      "エチオピア",
+      "ケニア"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "yt",
+    "country": "マヨット",
+    "image": "flags/yt.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "ルワンダ",
+      "マヨット",
+      "マダガスカル",
+      "リビア"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "mw",
+    "country": "マラウイ",
+    "image": "flags/mw.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "トーゴ",
+      "コートジボワール",
+      "マラウイ",
+      "レソト"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "ml",
+    "country": "マリ",
+    "image": "flags/ml.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "マリ",
+      "モザンビーク",
+      "レソト",
+      "ウガンダ"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "mz",
+    "country": "モザンビーク",
+    "image": "flags/mz.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "モザンビーク",
+      "モーリシャス",
+      "赤道ギニア",
+      "ガボン"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "mu",
+    "country": "モーリシャス",
+    "image": "flags/mu.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "ガンビア",
+      "マヨット",
+      "モーリシャス",
+      "レユニオン"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "mr",
+    "country": "モーリタニア",
+    "image": "flags/mr.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "モーリタニア",
+      "ジンバブエ",
+      "中央アフリカ",
+      "セネガル"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "ly",
+    "country": "リビア",
+    "image": "flags/ly.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "コモロ",
+      "リビア",
+      "ブルキナファソ",
+      "ルワンダ"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "lr",
+    "country": "リベリア",
+    "image": "flags/lr.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "ギニアビサウ",
+      "コンゴ民主共和国",
+      "エジプト",
+      "リベリア"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "rw",
+    "country": "ルワンダ",
+    "image": "flags/rw.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "ルワンダ",
+      "南アフリカ",
+      "コンゴ民主共和国",
+      "中央アフリカ"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "ls",
+    "country": "レソト",
+    "image": "flags/ls.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "ガンビア",
+      "ガーナ",
+      "レソト",
+      "南スーダン"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "re",
+    "country": "レユニオン",
+    "image": "flags/re.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "ブルキナファソ",
+      "レユニオン",
+      "セントヘレナ",
+      "ケニア"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "cf",
+    "country": "中央アフリカ",
+    "image": "flags/cf.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "南アフリカ",
+      "中央アフリカ",
+      "アルジェリア",
+      "マラウイ"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "ss",
+    "country": "南スーダン",
+    "image": "flags/ss.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "南スーダン",
+      "マダガスカル",
+      "ケニア",
+      "ベナン"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "eh",
+    "country": "西サハラ",
+    "image": "flags/eh.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "レユニオン",
+      "リベリア",
+      "西サハラ",
+      "アンゴラ"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "gq",
+    "country": "赤道ギニア",
+    "image": "flags/gq.png",
+    "region": "アフリカ",
+    "difficulty": 3,
+    "choices": [
+      "トーゴ",
+      "エスワティニ",
+      "タンザニア",
+      "赤道ギニア"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "au",
+    "country": "オーストラリア",
+    "image": "flags/au.png",
+    "region": "オセアニア",
+    "difficulty": 1,
+    "choices": [
+      "北マリアナ諸島",
+      "オーストラリア",
+      "キリバス",
+      "ツバル"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "nz",
+    "country": "ニュージーランド",
+    "image": "flags/nz.png",
+    "region": "オセアニア",
+    "difficulty": 1,
+    "choices": [
+      "ニュージーランド",
+      "ソロモン諸島",
+      "バヌアツ",
+      "ノーフォーク島"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "pg",
+    "country": "パプアニューギニア",
+    "image": "flags/pg.png",
+    "region": "オセアニア",
+    "difficulty": 2,
+    "choices": [
+      "キリバス",
+      "ウォリス・フツナ",
+      "パプアニューギニア",
+      "マーシャル諸島"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "fj",
+    "country": "フィジー",
+    "image": "flags/fj.png",
+    "region": "オセアニア",
+    "difficulty": 2,
+    "choices": [
+      "バヌアツ",
+      "南極",
+      "フィジー",
+      "マーシャル諸島"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "io",
+    "country": "イギリス領インド洋地域",
+    "image": "flags/io.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "ナウル",
+      "フィジー",
+      "北マリアナ諸島",
+      "イギリス領インド洋地域"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "wf",
+    "country": "ウォリス・フツナ",
+    "image": "flags/wf.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "ウォリス・フツナ",
+      "ツバル",
+      "フランス領ポリネシア",
+      "パプアニューギニア"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "ki",
+    "country": "キリバス",
+    "image": "flags/ki.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "グアム",
+      "キリバス",
+      "クック諸島",
+      "バヌアツ"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "ck",
+    "country": "クック諸島",
+    "image": "flags/ck.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "南極",
+      "フランス領南方・南極地域",
+      "クック諸島",
+      "サモア"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "cx",
+    "country": "クリスマス島",
+    "image": "flags/cx.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "北マリアナ諸島",
+      "ツバル",
+      "オーストラリア",
+      "クリスマス島"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "gu",
+    "country": "グアム",
+    "image": "flags/gu.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "グアム",
+      "ソロモン諸島",
+      "クック諸島",
+      "キリバス"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "cc",
+    "country": "ココス諸島",
+    "image": "flags/cc.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "ココス諸島",
+      "ニューカレドニア",
+      "トンガ",
+      "ツバル"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "ws",
+    "country": "サモア",
+    "image": "flags/ws.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "サモア",
+      "ハード島・マクドナルド諸島",
+      "トンガ",
+      "ニュージーランド"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "sb",
+    "country": "ソロモン諸島",
+    "image": "flags/sb.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "ノーフォーク島",
+      "クリスマス島",
+      "ハード島・マクドナルド諸島",
+      "ソロモン諸島"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "tv",
+    "country": "ツバル",
+    "image": "flags/tv.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "サモア",
+      "フィジー",
+      "ツバル",
+      "ニュージーランド"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "tk",
+    "country": "トケラウ",
+    "image": "flags/tk.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "ミクロネシア",
+      "トケラウ",
+      "南極",
+      "パプアニューギニア"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "to",
+    "country": "トンガ",
+    "image": "flags/to.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "合衆国領有小離島",
+      "パプアニューギニア",
+      "トンガ",
+      "クック諸島"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "nr",
+    "country": "ナウル",
+    "image": "flags/nr.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "ナウル",
+      "フランス領ポリネシア",
+      "サモア",
+      "北マリアナ諸島"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "nu",
+    "country": "ニウエ",
+    "image": "flags/nu.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "ピトケアン諸島",
+      "キリバス",
+      "ニウエ",
+      "合衆国領有小離島"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "nc",
+    "country": "ニューカレドニア",
+    "image": "flags/nc.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "ノーフォーク島",
+      "キリバス",
+      "ニューカレドニア",
+      "ミクロネシア"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "nf",
+    "country": "ノーフォーク島",
+    "image": "flags/nf.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "北マリアナ諸島",
+      "フランス領南方・南極地域",
+      "ノーフォーク島",
+      "ウォリス・フツナ"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "hm",
+    "country": "ハード島・マクドナルド諸島",
+    "image": "flags/hm.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "サモア",
+      "ハード島・マクドナルド諸島",
+      "南極",
+      "ニュージーランド"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "vu",
+    "country": "バヌアツ",
+    "image": "flags/vu.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "バヌアツ",
+      "トケラウ",
+      "ソロモン諸島",
+      "サモア"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "pw",
+    "country": "パラオ",
+    "image": "flags/pw.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "ニウエ",
+      "ピトケアン諸島",
+      "ミクロネシア",
+      "パラオ"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "pn",
+    "country": "ピトケアン諸島",
+    "image": "flags/pn.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "キリバス",
+      "ノーフォーク島",
+      "フランス領ポリネシア",
+      "ピトケアン諸島"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "pf",
+    "country": "フランス領ポリネシア",
+    "image": "flags/pf.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "ココス諸島",
+      "フランス領ポリネシア",
+      "バヌアツ",
+      "トンガ"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "tf",
+    "country": "フランス領南方・南極地域",
+    "image": "flags/tf.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "ココス諸島",
+      "ニュージーランド",
+      "ナウル",
+      "フランス領南方・南極地域"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "mh",
+    "country": "マーシャル諸島",
+    "image": "flags/mh.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "マーシャル諸島",
+      "ニウエ",
+      "ニュージーランド",
+      "ハード島・マクドナルド諸島"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "fm",
+    "country": "ミクロネシア",
+    "image": "flags/fm.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "ハード島・マクドナルド諸島",
+      "ソロモン諸島",
+      "ミクロネシア",
+      "オーストラリア"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "mp",
+    "country": "北マリアナ諸島",
+    "image": "flags/mp.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "フランス領南方・南極地域",
+      "オーストラリア",
+      "ピトケアン諸島",
+      "北マリアナ諸島"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "aq",
+    "country": "南極",
+    "image": "flags/aq.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "クック諸島",
+      "ウォリス・フツナ",
+      "南極",
+      "キリバス"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "um",
+    "country": "合衆国領有小離島",
+    "image": "flags/um.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "合衆国領有小離島",
+      "マーシャル諸島",
+      "フランス領南方・南極地域",
+      "ピトケアン諸島"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "as",
+    "country": "米領サモア",
+    "image": "flags/as.png",
+    "region": "オセアニア",
+    "difficulty": 3,
+    "choices": [
+      "フランス領南方・南極地域",
+      "ソロモン諸島",
+      "ニューカレドニア",
+      "米領サモア"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "gb",
+    "country": "イギリス",
+    "image": "flags/gb.png",
+    "region": "ヨーロッパ",
+    "difficulty": 1,
+    "choices": [
+      "イギリス",
+      "モルドバ",
+      "ルクセンブルク",
+      "スコットランド"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "it",
+    "country": "イタリア",
+    "image": "flags/it.png",
+    "region": "ヨーロッパ",
+    "difficulty": 1,
+    "choices": [
+      "スペイン",
+      "マルタ",
+      "オーランド諸島",
+      "イタリア"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "ch",
+    "country": "スイス",
+    "image": "flags/ch.png",
+    "region": "ヨーロッパ",
+    "difficulty": 1,
+    "choices": [
+      "アイルランド",
+      "スイス",
+      "ブルガリア",
+      "ボスニア・ヘルツェゴビナ"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "es",
+    "country": "スペイン",
+    "image": "flags/es.png",
+    "region": "ヨーロッパ",
+    "difficulty": 1,
+    "choices": [
+      "オーストリア",
+      "ポーランド",
+      "スペイン",
+      "ガーンジー"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "de",
+    "country": "ドイツ",
+    "image": "flags/de.png",
+    "region": "ヨーロッパ",
+    "difficulty": 1,
+    "choices": [
+      "ドイツ",
+      "バチカン",
+      "ポーランド",
+      "スヴァールバル諸島"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "fr",
+    "country": "フランス",
+    "image": "flags/fr.png",
+    "region": "ヨーロッパ",
+    "difficulty": 1,
+    "choices": [
+      "フランス",
+      "スロベニア",
+      "デンマーク",
+      "ルクセンブルク"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "ru",
+    "country": "ロシア",
+    "image": "flags/ru.png",
+    "region": "ヨーロッパ",
+    "difficulty": 1,
+    "choices": [
+      "モンテネグロ",
+      "ベラルーシ",
+      "ウェールズ",
+      "ロシア"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "is",
+    "country": "アイスランド",
+    "image": "flags/is.png",
+    "region": "ヨーロッパ",
+    "difficulty": 2,
+    "choices": [
+      "スヴァールバル諸島",
+      "イングランド",
+      "アイスランド",
+      "モンテネグロ"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "ie",
+    "country": "アイルランド",
+    "image": "flags/ie.png",
+    "region": "ヨーロッパ",
+    "difficulty": 2,
+    "choices": [
+      "スイス",
+      "ボスニア・ヘルツェゴビナ",
+      "アイルランド",
+      "ノルウェー"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "gb-eng",
+    "country": "イングランド",
+    "image": "flags/gb-eng.png",
+    "region": "ヨーロッパ",
+    "difficulty": 2,
+    "choices": [
+      "デンマーク",
+      "ポーランド",
+      "ウェールズ",
+      "イングランド"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "ua",
+    "country": "ウクライナ",
+    "image": "flags/ua.png",
+    "region": "ヨーロッパ",
+    "difficulty": 2,
+    "choices": [
+      "ルーマニア",
+      "チェコ",
+      "ウクライナ",
+      "北アイルランド"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "nl",
+    "country": "オランダ",
+    "image": "flags/nl.png",
+    "region": "ヨーロッパ",
+    "difficulty": 2,
+    "choices": [
+      "イタリア",
+      "オランダ",
+      "ラトビア",
+      "イングランド"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "at",
+    "country": "オーストリア",
+    "image": "flags/at.png",
+    "region": "ヨーロッパ",
+    "difficulty": 2,
+    "choices": [
+      "オーストリア",
+      "ブルガリア",
+      "イタリア",
+      "北アイルランド"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "gr",
+    "country": "ギリシャ",
+    "image": "flags/gr.png",
+    "region": "ヨーロッパ",
+    "difficulty": 2,
+    "choices": [
+      "ギリシャ",
+      "スコットランド",
+      "ドイツ",
+      "スウェーデン"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "se",
+    "country": "スウェーデン",
+    "image": "flags/se.png",
+    "region": "ヨーロッパ",
+    "difficulty": 2,
+    "choices": [
+      "スロバキア",
+      "オーストリア",
+      "リトアニア",
+      "スウェーデン"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "gb-sct",
+    "country": "スコットランド",
+    "image": "flags/gb-sct.png",
+    "region": "ヨーロッパ",
+    "difficulty": 2,
+    "choices": [
+      "スコットランド",
+      "フィンランド",
+      "アイスランド",
+      "クロアチア"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "cz",
+    "country": "チェコ",
+    "image": "flags/cz.png",
+    "region": "ヨーロッパ",
+    "difficulty": 2,
+    "choices": [
+      "ルクセンブルク",
+      "チェコ",
+      "オーストリア",
+      "イタリア"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "dk",
+    "country": "デンマーク",
+    "image": "flags/dk.png",
+    "region": "ヨーロッパ",
+    "difficulty": 2,
+    "choices": [
+      "ポルトガル",
+      "チェコ",
+      "デンマーク",
+      "ジャージー"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "no",
+    "country": "ノルウェー",
+    "image": "flags/no.png",
+    "region": "ヨーロッパ",
+    "difficulty": 2,
+    "choices": [
+      "ノルウェー",
+      "デンマーク",
+      "モンテネグロ",
+      "北アイルランド"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "hu",
+    "country": "ハンガリー",
+    "image": "flags/hu.png",
+    "region": "ヨーロッパ",
+    "difficulty": 2,
+    "choices": [
+      "リヒテンシュタイン",
+      "マン島",
+      "ノルウェー",
+      "ハンガリー"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "fi",
+    "country": "フィンランド",
+    "image": "flags/fi.png",
+    "region": "ヨーロッパ",
+    "difficulty": 2,
+    "choices": [
+      "イギリス",
+      "フィンランド",
+      "ウクライナ",
+      "スイス"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "be",
+    "country": "ベルギー",
+    "image": "flags/be.png",
+    "region": "ヨーロッパ",
+    "difficulty": 2,
+    "choices": [
+      "ベルギー",
+      "ロシア",
+      "バチカン",
+      "ハンガリー"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "pt",
+    "country": "ポルトガル",
+    "image": "flags/pt.png",
+    "region": "ヨーロッパ",
+    "difficulty": 2,
+    "choices": [
+      "アンドラ",
+      "クロアチア",
+      "ポルトガル",
+      "モナコ"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "pl",
+    "country": "ポーランド",
+    "image": "flags/pl.png",
+    "region": "ヨーロッパ",
+    "difficulty": 2,
+    "choices": [
+      "オランダ",
+      "ポーランド",
+      "スイス",
+      "ポルトガル"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "al",
+    "country": "アルバニア",
+    "image": "flags/al.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "スイス",
+      "ポルトガル",
+      "ルクセンブルク",
+      "アルバニア"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "ad",
+    "country": "アンドラ",
+    "image": "flags/ad.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "アンドラ",
+      "コソボ",
+      "ルクセンブルク",
+      "アルバニア"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "gb-wls",
+    "country": "ウェールズ",
+    "image": "flags/gb-wls.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "フィンランド",
+      "ウェールズ",
+      "ルクセンブルク",
+      "北アイルランド"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "ee",
+    "country": "エストニア",
+    "image": "flags/ee.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "ジブラルタル",
+      "モナコ",
+      "フランス",
+      "エストニア"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "ax",
+    "country": "オーランド諸島",
+    "image": "flags/ax.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "ポルトガル",
+      "アルバニア",
+      "オーランド諸島",
+      "クロアチア"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "gg",
+    "country": "ガーンジー",
+    "image": "flags/gg.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "スイス",
+      "モルドバ",
+      "ガーンジー",
+      "イギリス"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "hr",
+    "country": "クロアチア",
+    "image": "flags/hr.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "オーランド諸島",
+      "スペイン",
+      "ベルギー",
+      "クロアチア"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "xk",
+    "country": "コソボ",
+    "image": "flags/xk.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "リヒテンシュタイン",
+      "コソボ",
+      "オランダ",
+      "ウェールズ"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "sm",
+    "country": "サンマリノ",
+    "image": "flags/sm.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "コソボ",
+      "オーランド諸島",
+      "ジブラルタル",
+      "サンマリノ"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "gi",
+    "country": "ジブラルタル",
+    "image": "flags/gi.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "ジブラルタル",
+      "ポルトガル",
+      "デンマーク",
+      "イングランド"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "je",
+    "country": "ジャージー",
+    "image": "flags/je.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "コソボ",
+      "マルタ",
+      "ジャージー",
+      "スペイン"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "sk",
+    "country": "スロバキア",
+    "image": "flags/sk.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "スロバキア",
+      "ルクセンブルク",
+      "オーランド諸島",
+      "スイス"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "si",
+    "country": "スロベニア",
+    "image": "flags/si.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "モンテネグロ",
+      "アルバニア",
+      "コソボ",
+      "スロベニア"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "sj",
+    "country": "スヴァールバル諸島",
+    "image": "flags/sj.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "オランダ",
+      "スヴァールバル諸島",
+      "ベラルーシ",
+      "イタリア"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "rs",
+    "country": "セルビア",
+    "image": "flags/rs.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "モンテネグロ",
+      "ウェールズ",
+      "オーストリア",
+      "セルビア"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "va",
+    "country": "バチカン",
+    "image": "flags/va.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "バチカン",
+      "アイルランド",
+      "ラトビア",
+      "チェコ"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "fo",
+    "country": "フェロー諸島",
+    "image": "flags/fo.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "ボスニア・ヘルツェゴビナ",
+      "スペイン",
+      "フェロー諸島",
+      "セルビア"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "bg",
+    "country": "ブルガリア",
+    "image": "flags/bg.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "ブルガリア",
+      "ボスニア・ヘルツェゴビナ",
+      "スロベニア",
+      "スウェーデン"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "by",
+    "country": "ベラルーシ",
+    "image": "flags/by.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "アイスランド",
+      "北マケドニア",
+      "ベラルーシ",
+      "オランダ"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "ba",
+    "country": "ボスニア・ヘルツェゴビナ",
+    "image": "flags/ba.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "ロシア",
+      "ルクセンブルク",
+      "ボスニア・ヘルツェゴビナ",
+      "イギリス"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "mt",
+    "country": "マルタ",
+    "image": "flags/mt.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "マルタ",
+      "ルクセンブルク",
+      "スロバキア",
+      "ポルトガル"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "im",
+    "country": "マン島",
+    "image": "flags/im.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "北アイルランド",
+      "イングランド",
+      "マン島",
+      "ジブラルタル"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "mc",
+    "country": "モナコ",
+    "image": "flags/mc.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "サンマリノ",
+      "リトアニア",
+      "ガーンジー",
+      "モナコ"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "md",
+    "country": "モルドバ",
+    "image": "flags/md.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "モルドバ",
+      "アルバニア",
+      "ボスニア・ヘルツェゴビナ",
+      "アイルランド"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "me",
+    "country": "モンテネグロ",
+    "image": "flags/me.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "モンテネグロ",
+      "クロアチア",
+      "スヴァールバル諸島",
+      "ボスニア・ヘルツェゴビナ"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "lv",
+    "country": "ラトビア",
+    "image": "flags/lv.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "アイルランド",
+      "ロシア",
+      "オーランド諸島",
+      "ラトビア"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "lt",
+    "country": "リトアニア",
+    "image": "flags/lt.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "ラトビア",
+      "リトアニア",
+      "ブルガリア",
+      "北アイルランド"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "li",
+    "country": "リヒテンシュタイン",
+    "image": "flags/li.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "アイスランド",
+      "ドイツ",
+      "リヒテンシュタイン",
+      "ボスニア・ヘルツェゴビナ"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "lu",
+    "country": "ルクセンブルク",
+    "image": "flags/lu.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "ルクセンブルク",
+      "北アイルランド",
+      "ジブラルタル",
+      "セルビア"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "ro",
+    "country": "ルーマニア",
+    "image": "flags/ro.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "アイルランド",
+      "ギリシャ",
+      "ルーマニア",
+      "スイス"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "gb-nir",
+    "country": "北アイルランド",
+    "image": "flags/gb-nir.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "ジブラルタル",
+      "エストニア",
+      "北アイルランド",
+      "ポルトガル"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "mk",
+    "country": "北マケドニア",
+    "image": "flags/mk.png",
+    "region": "ヨーロッパ",
+    "difficulty": 3,
+    "choices": [
+      "フェロー諸島",
+      "スロベニア",
+      "ロシア",
+      "北マケドニア"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "us",
+    "country": "アメリカ",
+    "image": "flags/us.png",
+    "region": "北アメリカ",
+    "difficulty": 1,
+    "choices": [
+      "ジャマイカ",
+      "アメリカ",
+      "メキシコ",
+      "パナマ"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "ca",
+    "country": "カナダ",
+    "image": "flags/ca.png",
+    "region": "北アメリカ",
+    "difficulty": 1,
+    "choices": [
+      "カナダ",
+      "セントビンセント・グレナディーン",
+      "プエルトリコ",
+      "アメリカ"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "mx",
+    "country": "メキシコ",
+    "image": "flags/mx.png",
+    "region": "北アメリカ",
+    "difficulty": 1,
+    "choices": [
+      "マルティニーク",
+      "メキシコ",
+      "バハマ",
+      "グアテマラ"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "cu",
+    "country": "キューバ",
+    "image": "flags/cu.png",
+    "region": "北アメリカ",
+    "difficulty": 2,
+    "choices": [
+      "サンピエール・ミクロン",
+      "ベリーズ",
+      "グレナダ",
+      "キューバ"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "jm",
+    "country": "ジャマイカ",
+    "image": "flags/jm.png",
+    "region": "北アメリカ",
+    "difficulty": 2,
+    "choices": [
+      "エルサルバドル",
+      "ジャマイカ",
+      "ボネール",
+      "カナダ"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "pa",
+    "country": "パナマ",
+    "image": "flags/pa.png",
+    "region": "北アメリカ",
+    "difficulty": 2,
+    "choices": [
+      "キューバ",
+      "パナマ",
+      "ボネール",
+      "アンギラ"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "aw",
+    "country": "アルバ",
+    "image": "flags/aw.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "メキシコ",
+      "アルバ",
+      "タークス・カイコス諸島",
+      "グアドループ"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "ai",
+    "country": "アンギラ",
+    "image": "flags/ai.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "グリーンランド",
+      "アメリカ",
+      "キュラソー",
+      "アンギラ"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "ag",
+    "country": "アンティグア・バーブーダ",
+    "image": "flags/ag.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "ニカラグア",
+      "アンティグア・バーブーダ",
+      "英領ヴァージン諸島",
+      "キュラソー"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "sv",
+    "country": "エルサルバドル",
+    "image": "flags/sv.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "ニカラグア",
+      "エルサルバドル",
+      "アルバ",
+      "ケイマン諸島"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "cw",
+    "country": "キュラソー",
+    "image": "flags/cw.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "キュラソー",
+      "ジャマイカ",
+      "ドミニカ共和国",
+      "グアドループ"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "gt",
+    "country": "グアテマラ",
+    "image": "flags/gt.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "エルサルバドル",
+      "グアテマラ",
+      "コスタリカ",
+      "米領ヴァージン諸島"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "gp",
+    "country": "グアドループ",
+    "image": "flags/gp.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "メキシコ",
+      "グアドループ",
+      "コスタリカ",
+      "ボネール"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "gl",
+    "country": "グリーンランド",
+    "image": "flags/gl.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "セントルシア",
+      "ニカラグア",
+      "グリーンランド",
+      "サンピエール・ミクロン"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "gd",
+    "country": "グレナダ",
+    "image": "flags/gd.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "グレナダ",
+      "英領ヴァージン諸島",
+      "米領ヴァージン諸島",
+      "パナマ"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "ky",
+    "country": "ケイマン諸島",
+    "image": "flags/ky.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "ケイマン諸島",
+      "サン・マルタン",
+      "モントセラト",
+      "セントクリストファー・ネイビス"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "cr",
+    "country": "コスタリカ",
+    "image": "flags/cr.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "サン・マルタン",
+      "トリニダード・トバゴ",
+      "コスタリカ",
+      "グアドループ"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "pm",
+    "country": "サンピエール・ミクロン",
+    "image": "flags/pm.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "サンピエール・ミクロン",
+      "ハイチ",
+      "サン・マルタン",
+      "グアドループ"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "bl",
+    "country": "サン・バルテルミー",
+    "image": "flags/bl.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "マルティニーク",
+      "サン・バルテルミー",
+      "キュラソー",
+      "アンギラ"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "mf",
+    "country": "サン・マルタン",
+    "image": "flags/mf.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "サン・マルタン",
+      "キュラソー",
+      "バルバドス",
+      "グレナダ"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "sx",
+    "country": "シント・マールテン",
+    "image": "flags/sx.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "ケイマン諸島",
+      "シント・マールテン",
+      "ボネール",
+      "セントクリストファー・ネイビス"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "kn",
+    "country": "セントクリストファー・ネイビス",
+    "image": "flags/kn.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "セントクリストファー・ネイビス",
+      "ホンジュラス",
+      "ボネール",
+      "アンティグア・バーブーダ"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "vc",
+    "country": "セントビンセント・グレナディーン",
+    "image": "flags/vc.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "アルバ",
+      "米領ヴァージン諸島",
+      "セントビンセント・グレナディーン",
+      "モントセラト"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "lc",
+    "country": "セントルシア",
+    "image": "flags/lc.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "セントルシア",
+      "アンティグア・バーブーダ",
+      "バハマ",
+      "バミューダ"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "tc",
+    "country": "タークス・カイコス諸島",
+    "image": "flags/tc.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "バルバドス",
+      "タークス・カイコス諸島",
+      "グアテマラ",
+      "パナマ"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "tt",
+    "country": "トリニダード・トバゴ",
+    "image": "flags/tt.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "エルサルバドル",
+      "キュラソー",
+      "トリニダード・トバゴ",
+      "ケイマン諸島"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "do",
+    "country": "ドミニカ共和国",
+    "image": "flags/do.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "ドミニカ共和国",
+      "プエルトリコ",
+      "メキシコ",
+      "カナダ"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "dm",
+    "country": "ドミニカ国",
+    "image": "flags/dm.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "ドミニカ共和国",
+      "ドミニカ国",
+      "グレナダ",
+      "ハイチ"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "ni",
+    "country": "ニカラグア",
+    "image": "flags/ni.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "キューバ",
+      "タークス・カイコス諸島",
+      "ニカラグア",
+      "セントルシア"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "ht",
+    "country": "ハイチ",
+    "image": "flags/ht.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "ハイチ",
+      "アンギラ",
+      "ケイマン諸島",
+      "バハマ"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "bs",
+    "country": "バハマ",
+    "image": "flags/bs.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "カナダ",
+      "マルティニーク",
+      "アルバ",
+      "バハマ"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "bm",
+    "country": "バミューダ",
+    "image": "flags/bm.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "バミューダ",
+      "バハマ",
+      "米領ヴァージン諸島",
+      "コスタリカ"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "bb",
+    "country": "バルバドス",
+    "image": "flags/bb.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "バルバドス",
+      "ジャマイカ",
+      "ハイチ",
+      "ドミニカ国"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "pr",
+    "country": "プエルトリコ",
+    "image": "flags/pr.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "ジャマイカ",
+      "プエルトリコ",
+      "キュラソー",
+      "ハイチ"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "bz",
+    "country": "ベリーズ",
+    "image": "flags/bz.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "タークス・カイコス諸島",
+      "ベリーズ",
+      "ニカラグア",
+      "マルティニーク"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "hn",
+    "country": "ホンジュラス",
+    "image": "flags/hn.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "セントビンセント・グレナディーン",
+      "ドミニカ国",
+      "キューバ",
+      "ホンジュラス"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "bq",
+    "country": "ボネール",
+    "image": "flags/bq.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "タークス・カイコス諸島",
+      "パナマ",
+      "ボネール",
+      "米領ヴァージン諸島"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "mq",
+    "country": "マルティニーク",
+    "image": "flags/mq.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "バルバドス",
+      "サン・バルテルミー",
+      "ケイマン諸島",
+      "マルティニーク"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "ms",
+    "country": "モントセラト",
+    "image": "flags/ms.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "モントセラト",
+      "コスタリカ",
+      "グアドループ",
+      "セントルシア"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "vi",
+    "country": "米領ヴァージン諸島",
+    "image": "flags/vi.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "サンピエール・ミクロン",
+      "ジャマイカ",
+      "米領ヴァージン諸島",
+      "カナダ"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "vg",
+    "country": "英領ヴァージン諸島",
+    "image": "flags/vg.png",
+    "region": "北アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "英領ヴァージン諸島",
+      "バミューダ",
+      "ジャマイカ",
+      "コスタリカ"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "ar",
+    "country": "アルゼンチン",
+    "image": "flags/ar.png",
+    "region": "南アメリカ",
+    "difficulty": 1,
+    "choices": [
+      "アルゼンチン",
+      "チリ",
+      "フランス領ギアナ",
+      "パラグアイ"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "br",
+    "country": "ブラジル",
+    "image": "flags/br.png",
+    "region": "南アメリカ",
+    "difficulty": 1,
+    "choices": [
+      "ブーベ島",
+      "フォークランド諸島",
+      "ブラジル",
+      "コロンビア"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "co",
+    "country": "コロンビア",
+    "image": "flags/co.png",
+    "region": "南アメリカ",
+    "difficulty": 2,
+    "choices": [
+      "エクアドル",
+      "コロンビア",
+      "ガイアナ",
+      "アルゼンチン"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "cl",
+    "country": "チリ",
+    "image": "flags/cl.png",
+    "region": "南アメリカ",
+    "difficulty": 2,
+    "choices": [
+      "アルゼンチン",
+      "エクアドル",
+      "チリ",
+      "ベネズエラ"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "ve",
+    "country": "ベネズエラ",
+    "image": "flags/ve.png",
+    "region": "南アメリカ",
+    "difficulty": 2,
+    "choices": [
+      "ブラジル",
+      "ベネズエラ",
+      "スリナム",
+      "エクアドル"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "pe",
+    "country": "ペルー",
+    "image": "flags/pe.png",
+    "region": "南アメリカ",
+    "difficulty": 2,
+    "choices": [
+      "ペルー",
+      "サウスジョージア・サウスサンドウィッチ諸島",
+      "アルゼンチン",
+      "ベネズエラ"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "uy",
+    "country": "ウルグアイ",
+    "image": "flags/uy.png",
+    "region": "南アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "ブラジル",
+      "フランス領ギアナ",
+      "ウルグアイ",
+      "エクアドル"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "ec",
+    "country": "エクアドル",
+    "image": "flags/ec.png",
+    "region": "南アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "ペルー",
+      "コロンビア",
+      "フランス領ギアナ",
+      "エクアドル"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "gy",
+    "country": "ガイアナ",
+    "image": "flags/gy.png",
+    "region": "南アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "コロンビア",
+      "アルゼンチン",
+      "ガイアナ",
+      "ブーベ島"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "gs",
+    "country": "サウスジョージア・サウスサンドウィッチ諸島",
+    "image": "flags/gs.png",
+    "region": "南アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "エクアドル",
+      "サウスジョージア・サウスサンドウィッチ諸島",
+      "パラグアイ",
+      "ブーベ島"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "sr",
+    "country": "スリナム",
+    "image": "flags/sr.png",
+    "region": "南アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "ブラジル",
+      "スリナム",
+      "エクアドル",
+      "サウスジョージア・サウスサンドウィッチ諸島"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "py",
+    "country": "パラグアイ",
+    "image": "flags/py.png",
+    "region": "南アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "ガイアナ",
+      "ペルー",
+      "エクアドル",
+      "パラグアイ"
+    ],
+    "correctIndex": 3
+  },
+  {
+    "code": "fk",
+    "country": "フォークランド諸島",
+    "image": "flags/fk.png",
+    "region": "南アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "ブーベ島",
+      "チリ",
+      "フォークランド諸島",
+      "ブラジル"
+    ],
+    "correctIndex": 2
+  },
+  {
+    "code": "gf",
+    "country": "フランス領ギアナ",
+    "image": "flags/gf.png",
+    "region": "南アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "エクアドル",
+      "フランス領ギアナ",
+      "ブラジル",
+      "チリ"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "code": "bv",
+    "country": "ブーベ島",
+    "image": "flags/bv.png",
+    "region": "南アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "ブーベ島",
+      "チリ",
+      "コロンビア",
+      "ボリビア"
+    ],
+    "correctIndex": 0
+  },
+  {
+    "code": "bo",
+    "country": "ボリビア",
+    "image": "flags/bo.png",
+    "region": "南アメリカ",
+    "difficulty": 3,
+    "choices": [
+      "フランス領ギアナ",
+      "コロンビア",
+      "ブーベ島",
+      "ボリビア"
+    ],
+    "correctIndex": 3
+  }
+]
