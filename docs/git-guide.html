@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gitでバージョンを保存しよう</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+    background: #f0f4f8;
+    color: #2d3748;
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  .slides { position: relative; width: 100%; height: 100vh; }
+
+  .slide {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 70px 80px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.45s ease;
+  }
+  .slide.active { opacity: 1; pointer-events: auto; }
+
+  h1 {
+    font-size: 2.4rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 14px;
+    line-height: 1.5;
+    color: #1a202c;
+  }
+  h2 {
+    font-size: 1.75rem;
+    font-weight: 900;
+    margin-bottom: 18px;
+    text-align: center;
+    color: #1a202c;
+  }
+  p { font-size: 1.1rem; line-height: 1.85; }
+  .note { font-size: 0.95rem; color: #718096; line-height: 1.7; text-align: center; margin-top: 8px; }
+
+  .c-blue   { color: #3182ce; font-weight: 700; }
+  .c-green  { color: #2f855a; font-weight: 700; }
+  .c-red    { color: #c53030; font-weight: 700; }
+  .c-purple { color: #6b46c1; font-weight: 700; }
+  .c-orange { color: #c05621; font-weight: 700; }
+
+  /* 背景 */
+  .bg-cream    { background: linear-gradient(160deg, #fdf6ec 0%, #fcebd4 100%); }
+  .bg-mint     { background: linear-gradient(160deg, #e6fffa 0%, #c6f6d5 100%); }
+  .bg-sky      { background: linear-gradient(160deg, #ebf8ff 0%, #bee3f8 100%); }
+  .bg-lavender { background: linear-gradient(160deg, #faf5ff 0%, #e9d8fd 100%); }
+  .bg-peach    { background: linear-gradient(160deg, #fff5f5 0%, #fed7d7 100%); }
+  .bg-lemon    { background: linear-gradient(160deg, #fffff0 0%, #fefcbf 100%); }
+
+  /* イラスト円 */
+  .illust {
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 14px;
+  }
+  .illust-blue   { background: linear-gradient(135deg, #bee3f8, #90cdf4); }
+  .illust-green  { background: linear-gradient(135deg, #c6f6d5, #9ae6b4); }
+  .illust-orange { background: linear-gradient(135deg, #feebc8, #fbd38d); }
+  .illust-purple { background: linear-gradient(135deg, #e9d8fd, #d6bcfa); }
+  .illust-red    { background: linear-gradient(135deg, #fed7d7, #feb2b2); }
+
+  /* たとえ話 */
+  .analogy {
+    background: rgba(255,255,255,0.7);
+    border-radius: 16px;
+    padding: 18px 24px;
+    margin: 12px 0;
+    max-width: 640px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+  }
+  .analogy-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #6b46c1;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+  .analogy p { font-size: 1.02rem; }
+
+  /* 吹き出し */
+  .bubble {
+    background: #fff;
+    border-radius: 16px;
+    padding: 14px 22px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    max-width: 620px;
+    margin: 8px auto;
+    font-size: 1.02rem;
+    line-height: 1.8;
+  }
+
+  /* カード */
+  .card-row {
+    display: flex;
+    gap: 18px;
+    margin: 12px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px 22px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    flex: 1;
+    min-width: 220px;
+    max-width: 360px;
+  }
+  .card h3 {
+    font-size: 1.05rem;
+    font-weight: 900;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  .card p { font-size: 0.95rem; line-height: 1.75; }
+  .card-blue   { border-left: 5px solid #4299e1; }
+  .card-green  { border-left: 5px solid #48bb78; }
+  .card-orange { border-left: 5px solid #ed8936; }
+  .card-purple { border-left: 5px solid #9f7aea; }
+  .card-red    { border-left: 5px solid #fc8181; }
+
+  /* カードアイコン */
+  .card-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .card-icon-blue   { background: linear-gradient(135deg, #bee3f8, #90cdf4); }
+  .card-icon-green  { background: linear-gradient(135deg, #c6f6d5, #9ae6b4); }
+  .card-icon-purple { background: linear-gradient(135deg, #e9d8fd, #d6bcfa); }
+  .card-icon-orange { background: linear-gradient(135deg, #feebc8, #fbd38d); }
+  .card-icon-red    { background: linear-gradient(135deg, #fed7d7, #feb2b2); }
+
+  /* 図解ボックス */
+  .diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 14px 0;
+    flex-wrap: wrap;
+  }
+  .box {
+    background: #fff;
+    border-radius: 16px;
+    padding: 16px 20px;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    min-width: 130px;
+  }
+  .box-icon {
+    width: 50px; height: 50px;
+    margin: 0 auto 6px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #fff;
+  }
+  .box-blue   .box-icon { background: linear-gradient(135deg, #4299e1, #3182ce); }
+  .box-green  .box-icon { background: linear-gradient(135deg, #48bb78, #2f855a); }
+  .box-orange .box-icon { background: linear-gradient(135deg, #ed8936, #c05621); }
+  .box-purple .box-icon { background: linear-gradient(135deg, #9f7aea, #6b46c1); }
+  .box .label { font-size: 0.98rem; font-weight: 700; margin-bottom: 2px; }
+  .box .sub   { font-size: 0.8rem; color: #718096; line-height: 1.4; }
+  .arrow { font-size: 1.5rem; color: #a0aec0; flex-shrink: 0; }
+
+  /* プロンプト例 */
+  .prompt-example {
+    background: #fff;
+    border-radius: 16px;
+    padding: 16px 22px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    max-width: 520px;
+    margin: 8px auto;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .prompt-icon {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .prompt-text {
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.6;
+  }
+  .prompt-or {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #a0aec0;
+    font-weight: 700;
+    margin: 2px 0;
+  }
+
+  /* ステップ（フロー） */
+  .flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 540px;
+    margin: 8px auto;
+  }
+  .flow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .flow-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 36px;
+    flex-shrink: 0;
+  }
+  .flow-dot {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 0.9rem;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .flow-connector {
+    width: 3px;
+    height: 18px;
+    background: #cbd5e0;
+    flex-shrink: 0;
+  }
+  .flow-body {
+    padding: 4px 0 12px;
+  }
+  .flow-title {
+    font-weight: 900;
+    font-size: 0.98rem;
+    margin-bottom: 2px;
+  }
+  .flow-desc {
+    font-size: 0.9rem;
+    color: #4a5568;
+    line-height: 1.6;
+  }
+  .flow-chat {
+    display: inline-block;
+    background: #edf2f7;
+    border-radius: 10px;
+    padding: 4px 12px;
+    font-size: 0.88rem;
+    margin-top: 3px;
+    color: #2d3748;
+  }
+
+  /* デモエリア */
+  .demo-area {
+    background: #fff;
+    border-radius: 16px;
+    padding: 22px 26px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    max-width: 560px;
+    width: 100%;
+    margin: 8px auto;
+  }
+  .demo-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #6b46c1;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  .demo-chat {
+    min-height: 110px;
+    margin-bottom: 12px;
+  }
+  .chat-msg {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+    align-items: flex-start;
+    animation: fadeIn 0.3s ease;
+  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  .chat-icon {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 900;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .chat-icon-user { background: #4299e1; }
+  .chat-icon-ai   { background: #9f7aea; }
+  .chat-bubble {
+    background: #f7fafc;
+    border-radius: 12px;
+    padding: 7px 13px;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    max-width: 400px;
+    white-space: pre-line;
+  }
+  .chat-bubble-ai {
+    background: #faf5ff;
+    border: 1px solid #e9d8fd;
+  }
+  .demo-btn {
+    background: linear-gradient(135deg, #9f7aea, #6b46c1);
+    color: #fff;
+    border: none;
+    padding: 9px 22px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    font-family: inherit;
+  }
+  .demo-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(107,70,193,0.3); }
+  .demo-btn:disabled { opacity: 0.4; cursor: default; transform: none; box-shadow: none; }
+  .demo-reset {
+    background: #edf2f7;
+    color: #4a5568;
+    border: none;
+    padding: 7px 16px;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-left: 10px;
+    font-family: inherit;
+  }
+
+  /* タイムライン（履歴） */
+  .timeline {
+    max-width: 480px;
+    margin: 8px auto;
+  }
+  .tl-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+  .tl-dot {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: #4299e1;
+    margin-top: 5px;
+    flex-shrink: 0;
+    border: 3px solid #bee3f8;
+  }
+  .tl-dot.current { background: #48bb78; border-color: #c6f6d5; width: 18px; height: 18px; margin-top: 3px; }
+  .tl-content {
+    background: #fff;
+    border-radius: 12px;
+    padding: 8px 14px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    flex: 1;
+    margin-bottom: 4px;
+  }
+  .tl-content.current { border: 2px solid #c6f6d5; }
+  .tl-label { font-weight: 700; font-size: 0.92rem; }
+  .tl-date  { font-size: 0.78rem; color: #a0aec0; }
+
+  /* SVGシーン */
+  .scene {
+    margin: 10px auto;
+  }
+
+  /* ナビ */
+  .nav {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    z-index: 100;
+    background: rgba(255,255,255,0.9);
+    padding: 8px 22px;
+    border-radius: 28px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.1);
+    backdrop-filter: blur(8px);
+  }
+  .nav button {
+    background: #edf2f7;
+    border: none;
+    color: #2d3748;
+    font-size: 1.1rem;
+    padding: 8px 16px;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-weight: 700;
+    font-family: inherit;
+  }
+  .nav button:hover { background: #e2e8f0; }
+  .nav button:disabled { opacity: 0.3; cursor: default; }
+  .nav .pg {
+    font-size: 0.9rem;
+    color: #a0aec0;
+    min-width: 56px;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  @media (max-width: 700px) {
+    .slide { padding: 24px 20px 80px; }
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.35rem; }
+    p  { font-size: 0.98rem; }
+    .card { min-width: 200px; }
+    .box { min-width: 110px; padding: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="slides">
+
+  <!-- ==================== 1: 表紙 ==================== -->
+  <div class="slide bg-sky active">
+    <svg class="scene" width="120" height="120" viewBox="0 0 120 120" fill="none">
+      <circle cx="60" cy="60" r="54" fill="#bee3f8" opacity="0.5"/>
+      <circle cx="60" cy="60" r="38" fill="#90cdf4" opacity="0.5"/>
+      <!-- セーブアイコン -->
+      <rect x="38" y="34" width="44" height="52" rx="6" fill="#fff" stroke="#3182ce" stroke-width="3"/>
+      <rect x="48" y="34" width="24" height="18" rx="2" fill="#bee3f8" stroke="#3182ce" stroke-width="2"/>
+      <rect x="46" y="64" width="28" height="14" rx="3" fill="#ebf8ff" stroke="#3182ce" stroke-width="2"/>
+      <!-- チェックマーク -->
+      <circle cx="90" cy="38" r="14" fill="#48bb78"/>
+      <polyline points="83,38 88,43 97,33" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+    <h1>Gitでバージョンを<br>保存しよう</h1>
+    <p style="text-align:center; color:#4a5568; font-size:1.1rem;">
+      作ったアプリを「いつでも元に戻せる」ように<br>保存する方法を学ぼう
+    </p>
+    <p style="margin-top: 30px; color: #a0aec0; font-size: 0.95rem;">AIアプリコース｜Arschool</p>
+  </div>
+
+  <!-- ==================== 2: こんな経験ない？ ==================== -->
+  <div class="slide bg-peach">
+    <h2>こんなこと、起きたことない？</h2>
+
+    <!-- 困り顔のイラスト -->
+    <svg class="scene" width="300" height="100" viewBox="0 0 300 100" fill="none">
+      <!-- 左の人 -->
+      <circle cx="70" cy="40" r="24" fill="#fed7d7"/>
+      <circle cx="62" cy="36" r="3" fill="#c53030"/>
+      <circle cx="78" cy="36" r="3" fill="#c53030"/>
+      <path d="M62 50 Q70 46 78 50" stroke="#c53030" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <text x="70" y="88" text-anchor="middle" font-size="11" font-weight="700" fill="#c53030">元に戻せない！</text>
+      <!-- 中央PC -->
+      <rect x="125" y="22" width="50" height="36" rx="4" fill="#fff" stroke="#e53e3e" stroke-width="2"/>
+      <rect x="140" y="58" width="20" height="4" rx="1" fill="#e53e3e"/>
+      <text x="150" y="44" text-anchor="middle" font-size="16" fill="#e53e3e">?!</text>
+      <!-- 右の人 -->
+      <circle cx="230" cy="40" r="24" fill="#fed7d7"/>
+      <circle cx="222" cy="36" r="3" fill="#c53030"/>
+      <circle cx="238" cy="36" r="3" fill="#c53030"/>
+      <path d="M222 50 Q230 46 238 50" stroke="#c53030" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <text x="230" y="88" text-anchor="middle" font-size="11" font-weight="700" fill="#c53030">どこ変えたっけ？</text>
+    </svg>
+
+    <div class="card-row">
+      <div class="card card-red" style="max-width:280px;">
+        <div class="card-icon card-icon-red">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c53030" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <h3>動かなくなった</h3>
+        <p>いろいろ変えたら動かなくなった。<br>さっきまで動いてたのに、<br><span class="c-red">前の状態に戻せない！</span></p>
+      </div>
+      <div class="card card-red" style="max-width:280px;">
+        <div class="card-icon card-icon-red">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c53030" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </div>
+        <h3>変更点がわからない</h3>
+        <p>昨日と今日でなにを変えたか<br>覚えていない。<br><span class="c-red">どこがおかしいかわからない！</span></p>
+      </div>
+    </div>
+    <p class="note">こんな困りごとを解決してくれるのが <span class="c-blue">Git（ギット）</span> です。</p>
+  </div>
+
+  <!-- ==================== 3: Gitとは ==================== -->
+  <div class="slide bg-mint">
+    <h2>Git（ギット）ってなに？</h2>
+
+    <!-- ゲームのセーブポイントのイラスト -->
+    <svg class="scene" width="360" height="100" viewBox="0 0 360 100" fill="none">
+      <!-- セーブポイント1 -->
+      <rect x="10" y="20" width="80" height="60" rx="10" fill="#fff" stroke="#48bb78" stroke-width="2.5"/>
+      <rect x="24" y="28" width="52" height="30" rx="4" fill="#c6f6d5"/>
+      <text x="50" y="48" text-anchor="middle" font-size="10" font-weight="700" fill="#2f855a">SAVE 1</text>
+      <text x="50" y="72" text-anchor="middle" font-size="9" fill="#718096">6月30日</text>
+      <!-- 矢印 -->
+      <line x1="96" y1="50" x2="126" y2="50" stroke="#a0aec0" stroke-width="2" stroke-dasharray="4"/>
+      <polygon points="126,45 136,50 126,55" fill="#a0aec0"/>
+      <!-- セーブポイント2 -->
+      <rect x="140" y="20" width="80" height="60" rx="10" fill="#fff" stroke="#48bb78" stroke-width="2.5"/>
+      <rect x="154" y="28" width="52" height="30" rx="4" fill="#c6f6d5"/>
+      <text x="180" y="48" text-anchor="middle" font-size="10" font-weight="700" fill="#2f855a">SAVE 2</text>
+      <text x="180" y="72" text-anchor="middle" font-size="9" fill="#718096">7月1日</text>
+      <!-- 矢印 -->
+      <line x1="226" y1="50" x2="256" y2="50" stroke="#a0aec0" stroke-width="2" stroke-dasharray="4"/>
+      <polygon points="256,45 266,50 256,55" fill="#a0aec0"/>
+      <!-- セーブポイント3 (今) -->
+      <rect x="270" y="20" width="80" height="60" rx="10" fill="#fff" stroke="#3182ce" stroke-width="3"/>
+      <rect x="284" y="28" width="52" height="30" rx="4" fill="#bee3f8"/>
+      <text x="310" y="48" text-anchor="middle" font-size="10" font-weight="700" fill="#3182ce">SAVE 3</text>
+      <text x="310" y="72" text-anchor="middle" font-size="9" fill="#3182ce" font-weight="700">今ここ</text>
+    </svg>
+
+    <div class="analogy">
+      <div class="analogy-title">ゲームにたとえると</div>
+      <p>
+        Gitは、プログラミングの<span class="c-green">セーブ機能</span>です。<br>
+        ゲームでボス戦の前にセーブするように、<br>
+        コードを変える前に<span class="c-green">「今の状態」を保存</span>しておける。<br>
+        失敗しても、セーブした時点まで<span class="c-green">いつでも戻れます</span>。
+      </p>
+    </div>
+    <div class="card-row" style="margin-top:10px;">
+      <div class="card card-blue" style="max-width:280px;">
+        <div class="card-icon card-icon-blue">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3182ce" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+        </div>
+        <h3>保存する（コミット）</h3>
+        <p>今の状態を<br>セーブポイントとして記録する</p>
+      </div>
+      <div class="card card-purple" style="max-width:280px;">
+        <div class="card-icon card-icon-purple">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6b46c1" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+        </div>
+        <h3>履歴を見る・戻す</h3>
+        <p>過去のセーブポイントを<br>確認したり、その状態に戻る</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 4: コミットの仕組み ==================== -->
+  <div class="slide bg-cream">
+    <h2>保存（コミット）の仕組み</h2>
+
+    <!-- コード変更 → コミット → セーブ完了 -->
+    <div class="diagram">
+      <div class="box box-blue">
+        <div class="box-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <div class="label">コードを変える</div>
+        <div class="sub">機能を追加、バグ修正など</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="box box-green">
+        <div class="box-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
+        </div>
+        <div class="label">保存する</div>
+        <div class="sub">コミット = セーブ</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="box box-purple">
+        <div class="box-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="label">セーブ完了</div>
+        <div class="sub">いつでも戻れる</div>
+      </div>
+    </div>
+
+    <div class="bubble" style="margin-top:8px;">
+      <p style="text-align:center;">
+        保存するとき、<span class="c-blue">「何を変えたか」のメモ</span>を一緒に残します。<br>
+        あとで見返したとき「この保存は何の変更だったか」がわかるためです。
+      </p>
+    </div>
+
+    <!-- メモの例 -->
+    <svg class="scene" width="400" height="65" viewBox="0 0 400 65" fill="none" style="margin-top:4px;">
+      <rect x="2" y="2" width="190" height="56" rx="12" fill="#fff" stroke="#4299e1" stroke-width="2"/>
+      <text x="16" y="24" font-size="11" font-weight="700" fill="#3182ce">メモの例</text>
+      <text x="16" y="44" font-size="12" fill="#2d3748">「スタート画面を追加した」</text>
+      <rect x="208" y="2" width="190" height="56" rx="12" fill="#fff" stroke="#4299e1" stroke-width="2"/>
+      <text x="222" y="24" font-size="11" font-weight="700" fill="#3182ce">メモの例</text>
+      <text x="222" y="44" font-size="12" fill="#2d3748">「スコアのバグを直した」</text>
+    </svg>
+  </div>
+
+  <!-- ==================== 5: 履歴を見る・戻す ==================== -->
+  <div class="slide bg-lavender">
+    <h2>履歴を見る・過去に戻す</h2>
+    <p style="text-align:center; margin-bottom:10px; font-size:1.0rem;">
+      保存するたびに<span class="c-purple">履歴が残ります</span>。どの保存でも選んで戻れます。
+    </p>
+
+    <div style="display:flex; gap:24px; align-items:flex-start; flex-wrap:wrap; justify-content:center;">
+      <!-- タイムライン -->
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot current"></div>
+          <div class="tl-content current">
+            <div class="tl-label">結果画面のデザインを変更 <span style="color:#48bb78;">← 今ここ</span></div>
+            <div class="tl-date">7月1日 15:30</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-label">正解のアニメーションを追加</div>
+            <div class="tl-date">7月1日 14:00</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-label">クイズの4択ボタンを作成</div>
+            <div class="tl-date">6月30日 16:20</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-label">最初のHTMLファイルを作成</div>
+            <div class="tl-date">6月30日 14:00</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 戻すイラスト -->
+      <div style="max-width:200px; text-align:center; padding-top: 10px;">
+        <svg width="160" height="130" viewBox="0 0 160 130" fill="none">
+          <!-- 戻る矢印 -->
+          <path d="M80 20 Q30 20 30 60 Q30 100 80 100" stroke="#9f7aea" stroke-width="3" fill="none" stroke-dasharray="6"/>
+          <polygon points="75,94 85,100 75,106" fill="#9f7aea"/>
+          <!-- 上（今） -->
+          <rect x="80" y="6" width="70" height="30" rx="8" fill="#fff" stroke="#48bb78" stroke-width="2"/>
+          <text x="115" y="26" text-anchor="middle" font-size="10" font-weight="700" fill="#48bb78">今の状態</text>
+          <!-- 下（過去） -->
+          <rect x="80" y="90" width="70" height="30" rx="8" fill="#fff" stroke="#4299e1" stroke-width="2"/>
+          <text x="115" y="110" text-anchor="middle" font-size="10" font-weight="700" fill="#4299e1">過去の状態</text>
+          <!-- ラベル -->
+          <text x="22" y="64" text-anchor="middle" font-size="11" font-weight="700" fill="#6b46c1">戻す</text>
+        </svg>
+        <p style="font-size:0.88rem; color:#6b46c1; font-weight:700;">
+          動かなくなっても<br>安全な状態に戻せる！
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 6: エージェントへの頼み方 ==================== -->
+  <div class="slide bg-sky">
+    <h2>エージェントへの頼み方</h2>
+    <p style="text-align:center; margin-bottom:10px; font-size:1.0rem;">
+      難しいコマンドを覚える必要はありません。<br>
+      <span class="c-blue">日本語でお願い</span>するだけでOKです。
+    </p>
+
+    <!-- 保存したいとき -->
+    <p style="font-weight:900; font-size:0.95rem; margin-bottom: 4px; color: #2f855a;">保存したいとき</p>
+    <div class="prompt-example">
+      <div class="prompt-icon" style="background:#c6f6d5;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2f855a" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
+      </div>
+      <div>
+        <div class="prompt-text">「今の状態をGitに保存して」</div>
+        <div style="font-size:0.82rem; color:#718096;">「コミットして」でも同じ意味です</div>
+      </div>
+    </div>
+
+    <!-- 履歴を見たいとき -->
+    <p style="font-weight:900; font-size:0.95rem; margin-bottom: 4px; margin-top: 10px; color: #6b46c1;">履歴を見たいとき</p>
+    <div class="prompt-example">
+      <div class="prompt-icon" style="background:#e9d8fd;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6b46c1" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div class="prompt-text">「保存の履歴を見せて」</div>
+    </div>
+
+    <!-- 戻したいとき -->
+    <p style="font-weight:900; font-size:0.95rem; margin-bottom: 4px; margin-top: 10px; color: #c05621;">戻したいとき</p>
+    <div class="prompt-example">
+      <div class="prompt-icon" style="background:#feebc8;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c05621" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+      </div>
+      <div class="prompt-text">「1つ前の状態に戻して」</div>
+    </div>
+
+    <p class="note">GitHub Copilot や Codex は、どの言い方でも理解してくれます。</p>
+  </div>
+
+  <!-- ==================== 7: エージェントとの流れ ==================== -->
+  <div class="slide bg-cream">
+    <h2>保存するときの流れ</h2>
+
+    <div style="display:flex; gap:24px; align-items:center; flex-wrap:wrap; justify-content:center;">
+      <!-- フロー -->
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-line"><div class="flow-dot" style="background:#4299e1;">1</div><div class="flow-connector"></div></div>
+          <div class="flow-body">
+            <div class="flow-title">コードを変更する</div>
+            <div class="flow-desc">エージェントに頼んで機能を追加したり、<br>自分で手直ししたり</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-line"><div class="flow-dot" style="background:#48bb78;">2</div><div class="flow-connector"></div></div>
+          <div class="flow-body">
+            <div class="flow-title">動くことを確認する</div>
+            <div class="flow-desc">ブラウザで確認して、ちゃんと動いてたらOK</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-line"><div class="flow-dot" style="background:#9f7aea;">3</div><div class="flow-connector"></div></div>
+          <div class="flow-body">
+            <div class="flow-title">エージェントに保存をお願いする</div>
+            <div class="flow-chat">「今の状態をGitに保存して。スタート画面を追加した。」</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-line"><div class="flow-dot" style="background:#ed8936;">4</div></div>
+          <div class="flow-body">
+            <div class="flow-title">保存完了！</div>
+            <div class="flow-desc">セーブポイントができた。安心して次の作業に進める。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- やりとりイラスト -->
+      <svg width="160" height="200" viewBox="0 0 160 200" fill="none">
+        <!-- 生徒 -->
+        <circle cx="50" cy="36" r="22" fill="#bee3f8"/>
+        <circle cx="43" cy="32" r="2.5" fill="#3182ce"/>
+        <circle cx="57" cy="32" r="2.5" fill="#3182ce"/>
+        <path d="M43 42 Q50 48 57 42" stroke="#3182ce" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <text x="50" y="72" text-anchor="middle" font-size="10" font-weight="700" fill="#3182ce">自分</text>
+
+        <!-- 吹き出し -->
+        <rect x="12" y="82" width="136" height="28" rx="8" fill="#ebf8ff" stroke="#90cdf4" stroke-width="1.5"/>
+        <text x="80" y="101" text-anchor="middle" font-size="10" fill="#2d3748">「保存して！」</text>
+        <polygon points="46,82 50,74 54,82" fill="#ebf8ff" stroke="#90cdf4" stroke-width="1.5"/>
+
+        <!-- AI -->
+        <circle cx="110" cy="150" r="22" fill="#e9d8fd"/>
+        <circle cx="103" cy="146" r="2.5" fill="#6b46c1"/>
+        <circle cx="117" cy="146" r="2.5" fill="#6b46c1"/>
+        <path d="M103 156 Q110 162 117 156" stroke="#6b46c1" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <text x="110" y="186" text-anchor="middle" font-size="10" font-weight="700" fill="#6b46c1">AI</text>
+
+        <!-- AI吹き出し -->
+        <rect x="12" y="120" width="136" height="28" rx="8" fill="#faf5ff" stroke="#d6bcfa" stroke-width="1.5"/>
+        <text x="80" y="139" text-anchor="middle" font-size="10" fill="#2d3748">「保存しました！」</text>
+        <polygon points="106,148 110,156 114,148" fill="#faf5ff" stroke="#d6bcfa" stroke-width="1.5"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ==================== 8: デモ ==================== -->
+  <div class="slide bg-lavender">
+    <h2>やってみよう（体験デモ）</h2>
+    <p style="text-align:center; margin-bottom:8px; font-size:0.98rem;">
+      ボタンを押して、エージェントとのやりとりを体験してみよう。
+    </p>
+    <div class="demo-area">
+      <div class="demo-title">エージェントとの会話</div>
+      <div class="demo-chat" id="demo-chat"></div>
+      <div>
+        <button class="demo-btn" id="demo-btn" onclick="nextDemoStep()">話しかける</button>
+        <button class="demo-reset" id="demo-reset" onclick="resetDemo()" style="display:none;">最初からやり直す</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 9: いつ保存する？ ==================== -->
+  <div class="slide bg-mint">
+    <h2>いつ保存すればいい？</h2>
+
+    <!-- アイコン付きカード -->
+    <div class="card-row">
+      <div class="card card-blue">
+        <div class="card-icon card-icon-blue">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3182ce" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>こんなタイミングで保存しよう</h3>
+        <p>
+          <span class="c-blue">新しい機能ができたとき</span><br>
+          例：「4択ボタンが動くようになった」<br><br>
+          <span class="c-blue">バグを直したとき</span><br>
+          例：「スコアが増えないバグを直した」<br><br>
+          <span class="c-blue">デザインを変えたとき</span><br>
+          例：「背景の色を青に変えた」<br><br>
+          <span class="c-blue">今日の作業を終えるとき</span><br>
+          例：「今日はここまで」
+        </p>
+      </div>
+      <div class="card card-orange">
+        <div class="card-icon card-icon-orange">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c05621" stroke-width="2.5"><line x1="17" y1="10" x2="3" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="17" y1="18" x2="3" y2="18"/></svg>
+        </div>
+        <h3>メモの書き方のコツ</h3>
+        <p>
+          <span class="c-orange">「何を変えたか」を短く書く</span><br><br>
+          わかりやすい例：<br>
+          「スタート画面を追加」<br>
+          「正解のアニメーションを修正」<br>
+          「クイズを20問に増やした」<br><br>
+          あまり良くない例：<br>
+          <span style="color:#a0aec0;">「更新」「変更」「あああ」</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 10: まとめ ==================== -->
+  <div class="slide bg-cream">
+    <svg class="scene" width="100" height="100" viewBox="0 0 100 100" fill="none">
+      <circle cx="50" cy="50" r="44" fill="#c6f6d5" opacity="0.5"/>
+      <circle cx="50" cy="50" r="30" fill="#9ae6b4" opacity="0.5"/>
+      <polyline points="35,50 46,61 65,39" stroke="#2f855a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+    <h1>まとめ</h1>
+    <div style="max-width: 580px;">
+      <div class="bubble" style="margin: 6px 0;">
+        <p>
+          <svg style="vertical-align:middle; margin-right:6px;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3182ce" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
+          <span class="c-blue">Git</span>はコードの<span class="c-blue">セーブ機能</span>。好きなタイミングで保存できる。
+        </p>
+      </div>
+      <div class="bubble" style="margin: 6px 0;">
+        <p>
+          <svg style="vertical-align:middle; margin-right:6px;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6b46c1" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span class="c-purple">履歴</span>が残るから、いつでも過去の状態に戻せる。
+        </p>
+      </div>
+      <div class="bubble" style="margin: 6px 0;">
+        <p>
+          <svg style="vertical-align:middle; margin-right:6px;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2f855a" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          操作は<span class="c-green">「Gitに保存して」と日本語で伝える</span>だけ。
+        </p>
+      </div>
+      <div class="bubble" style="margin: 6px 0;">
+        <p>
+          <svg style="vertical-align:middle; margin-right:6px;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c05621" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          動くことを確認したら、<span class="c-orange">こまめに保存する</span>のがコツ。
+        </p>
+      </div>
+    </div>
+    <div class="analogy" style="margin-top:12px; max-width:480px;">
+      <div class="analogy-title">さっそくやってみよう</div>
+      <p style="font-size:0.98rem;">
+        アプリを作りながら、区切りのいいタイミングで<br>
+        「今の状態をGitに保存して」とエージェントに頼んでみよう！
+      </p>
+    </div>
+    <p style="margin-top: 16px; color: #a0aec0; font-size: 0.95rem;">AIアプリコース｜Arschool</p>
+  </div>
+
+</div>
+
+<!-- ナビゲーション -->
+<div class="nav">
+  <button id="prev-btn" disabled>◀ 前へ</button>
+  <span class="pg"><span id="cp">1</span> / <span id="tp">10</span></span>
+  <button id="next-btn">次へ ▶</button>
+</div>
+
+<script>
+  /* ===== スライドナビゲーション ===== */
+  const slides = document.querySelectorAll('.slide');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+  const cpEl = document.getElementById('cp');
+  let cur = 0;
+
+  function go(n) {
+    slides.forEach(s => s.classList.remove('active'));
+    slides[n].classList.add('active');
+    cur = n;
+    cpEl.textContent = n + 1;
+    prevBtn.disabled = n === 0;
+    nextBtn.disabled = n === slides.length - 1;
+  }
+
+  prevBtn.addEventListener('click', () => { if (cur > 0) go(cur - 1); });
+  nextBtn.addEventListener('click', () => { if (cur < slides.length - 1) go(cur + 1); });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); if (cur < slides.length - 1) go(cur + 1); }
+    if (e.key === 'ArrowLeft') { if (cur > 0) go(cur - 1); }
+  });
+
+  /* ===== デモ：エージェント会話シミュレーション ===== */
+  const demoSteps = [
+    { who: 'user', text: '今の状態をGitに保存して！スタート画面を追加したよ。' },
+    { who: 'ai',   text: 'わかりました！\n「スタート画面を追加」で保存（コミット）しますね。' },
+    { who: 'ai',   text: '保存しました！ セーブポイントができました。\n安心して次の作業に進んでください。' },
+    { who: 'user', text: '保存の履歴を見せて。' },
+    { who: 'ai',   text: '保存の履歴はこちらです：\n1. スタート画面を追加（今）\n2. 4択ボタンを作成\n3. 最初のファイルを作成\nどの状態に戻したいですか？' },
+    { who: 'user', text: '大丈夫、戻さなくていいよ。ありがとう！' },
+    { who: 'ai',   text: 'はい！ また保存したくなったら声をかけてください。' },
+  ];
+  let demoIndex = 0;
+  const chatEl = document.getElementById('demo-chat');
+  const demoBtnEl = document.getElementById('demo-btn');
+  const demoResetEl = document.getElementById('demo-reset');
+
+  const btnLabels = ['話しかける', '……', '……', '聞いてみる', '……', '答える', '……'];
+
+  function nextDemoStep() {
+    if (demoIndex >= demoSteps.length) return;
+    const step = demoSteps[demoIndex];
+    const msg = document.createElement('div');
+    msg.className = 'chat-msg';
+    msg.innerHTML = `
+      <div class="chat-icon ${step.who === 'user' ? 'chat-icon-user' : 'chat-icon-ai'}">${step.who === 'user' ? '自分' : 'AI'}</div>
+      <div class="chat-bubble ${step.who === 'ai' ? 'chat-bubble-ai' : ''}">${step.text}</div>
+    `;
+    chatEl.appendChild(msg);
+    chatEl.scrollTop = chatEl.scrollHeight;
+    demoIndex++;
+
+    if (demoIndex < demoSteps.length) {
+      demoBtnEl.textContent = btnLabels[demoIndex] || '次へ';
+    } else {
+      demoBtnEl.disabled = true;
+      demoBtnEl.textContent = '完了！';
+      demoResetEl.style.display = 'inline-block';
+    }
+  }
+
+  function resetDemo() {
+    demoIndex = 0;
+    chatEl.innerHTML = '';
+    demoBtnEl.disabled = false;
+    demoBtnEl.textContent = '話しかける';
+    demoResetEl.style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
