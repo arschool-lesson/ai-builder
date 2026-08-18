@@ -43,10 +43,13 @@ function resizeCanvas() {
   const w = Math.min(maxW, 900);
   const h = Math.min(maxH, 640);
 
-  // 現在の画像を保存
-  let imageData = null;
+  // 現在の画像を一時キャンバスに保存
+  let snapshot = null;
   if (mainCanvas.width > 0 && mainCanvas.height > 0) {
-    imageData = ctx.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
+    snapshot = document.createElement('canvas');
+    snapshot.width = mainCanvas.width;
+    snapshot.height = mainCanvas.height;
+    snapshot.getContext('2d').drawImage(mainCanvas, 0, 0);
   }
 
   mainCanvas.width = w;
@@ -59,8 +62,10 @@ function resizeCanvas() {
   ctx.fillRect(0, 0, w, h);
 
   // 保存していた画像を復元
-  if (imageData) {
-    ctx.putImageData(imageData, 0, 0);
+  // （putImageData だと透明ピクセルがアルファ値ごと上書きされて
+  //   白地が消えるため、通常合成の drawImage で戻す）
+  if (snapshot) {
+    ctx.drawImage(snapshot, 0, 0);
   }
 
   canvasSizeEl.textContent = `${w} × ${h}`;
