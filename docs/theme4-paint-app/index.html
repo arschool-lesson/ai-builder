@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>おえかきスタジオ</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- ヘッダー -->
+    <header class="header">
+      <h1 class="logo"><i class="bi bi-palette"></i> おえかきスタジオ</h1>
+      <div class="header-actions">
+        <button id="undo-btn" class="header-btn" title="もとに戻す"><i class="bi bi-arrow-counterclockwise"></i> もどす</button>
+        <button id="redo-btn" class="header-btn" title="やり直し"><i class="bi bi-arrow-clockwise"></i> やりなおす</button>
+        <button id="clear-btn" class="header-btn btn-danger" title="全部消す"><i class="bi bi-trash3"></i> クリア</button>
+        <button id="save-btn" class="header-btn btn-save" title="画像を保存"><i class="bi bi-download"></i> ほぞん</button>
+      </div>
+    </header>
+
+    <div class="workspace">
+
+      <!-- ツールバー -->
+      <aside class="toolbar">
+        <div class="tool-section">
+          <div class="section-label">ツール</div>
+          <button class="tool-btn active" data-tool="pen" title="ペン">
+            <span class="tool-icon"><i class="bi bi-pen"></i></span>
+            <span class="tool-name">ペン</span>
+          </button>
+          <button class="tool-btn" data-tool="eraser" title="消しゴム">
+            <span class="tool-icon"><i class="bi bi-eraser"></i></span>
+            <span class="tool-name">けしゴム</span>
+          </button>
+          <button class="tool-btn" data-tool="line" title="直線">
+            <span class="tool-icon"><i class="bi bi-slash-lg"></i></span>
+            <span class="tool-name">直線</span>
+          </button>
+          <button class="tool-btn" data-tool="rect" title="四角">
+            <span class="tool-icon"><i class="bi bi-square"></i></span>
+            <span class="tool-name">四角</span>
+          </button>
+          <button class="tool-btn" data-tool="circle" title="丸">
+            <span class="tool-icon"><i class="bi bi-circle"></i></span>
+            <span class="tool-name">まる</span>
+          </button>
+          <button class="tool-btn" data-tool="fill" title="ぬりつぶし">
+            <span class="tool-icon"><i class="bi bi-paint-bucket"></i></span>
+            <span class="tool-name">ぬりつぶし</span>
+          </button>
+        </div>
+
+        <div class="tool-section">
+          <div class="section-label">ふとさ</div>
+          <input type="range" id="size-slider" min="1" max="40" value="4">
+          <div class="size-preview-wrap">
+            <div id="size-preview" class="size-preview"></div>
+            <span id="size-value" class="size-value">4px</span>
+          </div>
+        </div>
+
+        <div class="tool-section">
+          <div class="section-label">カラー</div>
+          <div class="color-palette" id="color-palette">
+            <button class="color-swatch active" data-color="#1a1a2e" style="background:#1a1a2e;" title="くろ"></button>
+            <button class="color-swatch" data-color="#e74c3c" style="background:#e74c3c;" title="あか"></button>
+            <button class="color-swatch" data-color="#e67e22" style="background:#e67e22;" title="オレンジ"></button>
+            <button class="color-swatch" data-color="#f1c40f" style="background:#f1c40f;" title="きいろ"></button>
+            <button class="color-swatch" data-color="#2ecc71" style="background:#2ecc71;" title="みどり"></button>
+            <button class="color-swatch" data-color="#3498db" style="background:#3498db;" title="あお"></button>
+            <button class="color-swatch" data-color="#9b59b6" style="background:#9b59b6;" title="むらさき"></button>
+            <button class="color-swatch" data-color="#e91e8c" style="background:#e91e8c;" title="ピンク"></button>
+            <button class="color-swatch" data-color="#1abc9c" style="background:#1abc9c;" title="エメラルド"></button>
+            <button class="color-swatch" data-color="#8b6914" style="background:#8b6914;" title="ちゃいろ"></button>
+            <button class="color-swatch" data-color="#95a5a6" style="background:#95a5a6;" title="はいいろ"></button>
+            <button class="color-swatch" data-color="#ffffff" style="background:#ffffff;" title="しろ"></button>
+          </div>
+          <div class="custom-color-wrap">
+            <label for="custom-color" class="custom-label">じゆういろ</label>
+            <input type="color" id="custom-color" value="#1a1a2e">
+          </div>
+        </div>
+
+        <div class="tool-section">
+          <div class="section-label">図形オプション</div>
+          <label class="checkbox-label">
+            <input type="checkbox" id="fill-shape"> ぬりつぶす
+          </label>
+        </div>
+      </aside>
+
+      <!-- キャンバス -->
+      <main class="canvas-area">
+        <div class="canvas-wrap" id="canvas-wrap">
+          <canvas id="main-canvas"></canvas>
+          <canvas id="preview-canvas"></canvas>
+        </div>
+        <div class="canvas-info">
+          <span id="cursor-pos">x: 0, y: 0</span>
+          <span id="canvas-size"></span>
+        </div>
+      </main>
+
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
